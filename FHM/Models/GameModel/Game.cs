@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FHM.Models.FormatModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -21,5 +22,7 @@ namespace FHM.Models.GameModel
         public string GameImageUrl { get; set; }
         public string GameImageThumbnailURL { get; set; }
         public bool GameIsGameOfTheWeek { get; set; }
+
+        public ICollection<Format> Formats { get; set; }
     }
 }
