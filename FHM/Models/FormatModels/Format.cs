@@ -14,7 +14,7 @@ namespace FHM.Models.FormatModels
         public string FormatDesc { get; set; }
         public string FormatLink { get; set; }
         //Foreign key for Game
-        [ForeignKey("Game")]
+        [ForeignKey("GameID")]
         public int GameID { get; set; }
         public Game Game { get; set; }
     }

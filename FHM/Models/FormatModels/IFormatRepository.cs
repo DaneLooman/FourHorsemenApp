@@ -5,9 +5,10 @@ using System.Threading.Tasks;
 
 namespace FHM.Models.FormatModels
 {
-    interface IFormatRepository
+    public interface IFormatRepository
     {
         IEnumerable<Format> GetAllFormats();
         Format GetFormatByID(int FormatID);
+        void AddFormat(Format format);
     }
 }

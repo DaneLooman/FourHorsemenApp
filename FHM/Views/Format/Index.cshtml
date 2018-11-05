@@ -1,0 +1,20 @@
+﻿@model FormatViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>@Model.Title</h2>
+
+@foreach (var format in Model.Formats)
+{
+    <div class="col-sm-4 col-lg-4 col-md-4">
+        <div class="thumbnail">
+            <div class="caption">
+                <h3> @format.FormatName</h3>
+                <p>@format.FormatDesc</p>
+                <p>@format.Game.GameName</p>
+                <a href="@format.FormatLink">Full Information</a>
+            </div>
+        </div>
+    </div>
+}

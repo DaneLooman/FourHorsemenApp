@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using FHM.Models;
 using FHM.Models.GameModel;
+using FHM.Models.FormatModels;
 
 namespace FHM.Data
 {
@@ -15,7 +16,9 @@ namespace FHM.Data
             : base(options)
         {
         }
+        //DbSets
         public DbSet<Game> Games { get; set; }
+        public DbSet<Format> Formats { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
