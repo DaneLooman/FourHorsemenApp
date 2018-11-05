@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FHM.Models.FormatModels;
 using FHM.Models.FormatViewModels;
+using FHM.Models.GameModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,10 +15,12 @@ namespace FHM.Controllers
     {
         private readonly IFormatRepository _formatRepository;
 
+
         public FormatController(IFormatRepository formatRepository)
         {
             _formatRepository = formatRepository;
         }
+
         public IActionResult Index()
         {
             var formats = _formatRepository.GetAllFormats().OrderBy(f => f.Game.GameName).ThenBy(f => f.FormatName);
