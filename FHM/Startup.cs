@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using FHM.Data;
 using FHM.Models;
 using FHM.Services;
+using FHM.Models.Game;
 
 namespace FHM
 {
@@ -35,7 +36,7 @@ namespace FHM
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
-
+            services.AddTransient<IGameRepository, GameRepository>();
             services.AddMvc();
         }
 

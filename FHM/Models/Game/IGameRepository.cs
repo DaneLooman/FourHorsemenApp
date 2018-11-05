@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace FHM.Models.Game
 {
-    interface IGameRepository
+    public interface IGameRepository
     {
         IEnumerable<Game> GetAllGames();
         Game GetGameByID(int gameID);

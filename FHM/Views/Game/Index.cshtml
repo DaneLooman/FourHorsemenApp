@@ -1,0 +1,23 @@
+﻿@model GameViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>@Model.Title</h2>
+
+@foreach (var game in Model.Games)
+{
+    <div class="col-sm-4 col-lg-4 col-md-4">
+        <div class="thumbnail">
+            <img src="@game.GameImageThumbnailURL" alt="">
+            <div class="caption">
+                <h3>
+                    <a asp-controller="Game" asp-action="GameDetails" asp-route-gameID="@game.GameID">
+                        @game.GameName
+                    </a>
+                </h3>
+                <p>@game.GameShortDescription</p>
+            </div>
+        </div>
+    </div>
+}
