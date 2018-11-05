@@ -11,7 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using FHM.Data;
 using FHM.Models;
 using FHM.Services;
-using FHM.Models.Game;
+using FHM.Models.GameModel;
 
 namespace FHM
 {

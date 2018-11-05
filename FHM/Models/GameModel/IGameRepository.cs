@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FHM.Models.Game
+namespace FHM.Models.GameModel
 {
     public interface IGameRepository
     {

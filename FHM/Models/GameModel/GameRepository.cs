@@ -1,10 +1,11 @@
 ﻿using FHM.Data;
+using FHM.Models.GameModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FHM.Models.Game
+namespace FHM.Models.GameModel
 {
     public class GameRepository : IGameRepository
     {

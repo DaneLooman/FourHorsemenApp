@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using FHM.Models;
-using FHM.Models.Game;
+using FHM.Models.GameModel;
 
 namespace FHM.Data
 {

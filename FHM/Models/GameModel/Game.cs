@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FHM.Models.Game
+namespace FHM.Models.GameModel
 {
     public class Game
     {
