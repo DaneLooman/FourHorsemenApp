@@ -1,4 +1,4 @@
-﻿@model FHM.Models.FormatModels.Format
+﻿@model FHM.Models.FormatViewModels.FormatFormViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -26,6 +26,11 @@
                 <label asp-for="FormatLink" class="control-label"></label>
                 <input asp-for="FormatLink" class="form-control" />
                 <span asp-validation-for="FormatLink" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.GameID)
+                @Html.DropDownListFor(m => m.Games, new SelectList(Model.Games, "GameId", "GameName"))
+                @Html.ValidationMessageFor(m => m.GameID)
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />

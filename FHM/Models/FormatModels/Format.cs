@@ -19,7 +19,6 @@ namespace FHM.Models.FormatModels
         public string FormatDescription { get; set; }
         [Required]
         public string FormatLink { get; set; }
-        [Required]
         public Game Game { get; set; }
         [Required]
         public int GameID { get; set; }

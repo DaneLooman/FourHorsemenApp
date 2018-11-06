@@ -12,6 +12,7 @@ using FHM.Data;
 using FHM.Models;
 using FHM.Services;
 using FHM.Models.GameModel;
+using FHM.Models.FormatViewModels;
 
 namespace FHM
 {
@@ -37,6 +38,7 @@ namespace FHM
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddTransient<IGameRepository, GameRepository>();
+            services.AddTransient<IFormatRepository, FormatRepository>();
             services.AddMvc();
         }
 

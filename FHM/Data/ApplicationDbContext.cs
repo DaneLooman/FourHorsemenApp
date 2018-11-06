@@ -25,7 +25,5 @@ namespace FHM.Data
             base.OnModelCreating(builder);
             builder.Entity<Game>().ToTable("Game");
         }
-
-        public DbSet<FHM.Models.FormatModels.Format> Format { get; set; }
     }
 }

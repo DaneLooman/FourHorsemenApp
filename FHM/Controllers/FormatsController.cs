@@ -7,34 +7,34 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FHM.Data;
 using FHM.Models.FormatModels;
+using FHM.Models.FormatViewModels;
 
 namespace FHM.Controllers
 {
     public class FormatsController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IFormatRepository _context;
 
-        public FormatsController(ApplicationDbContext context)
+        public FormatsController(IFormatRepository appDbContext)
         {
-            _context = context;
+            _context = appDbContext;
         }
 
         // GET: Formats
-        public async Task<IActionResult> Index()
+        public  IActionResult Index()
         {
-            return View(await _context.Formats.Include(f => f.Game).ToListAsync());
+            return View(_context.GetAllFormats());
         }
 
         // GET: Formats/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var format = await _context.Formats.Include(f => f.Game)
-                .SingleOrDefaultAsync(m => m.FormatID == id);
+            var format = _context.GetAllFormats();
             if (format == null)
             {
                 return NotFound();
@@ -46,7 +46,13 @@ namespace FHM.Controllers
         // GET: Formats/Create
         public IActionResult Create()
         {
-            return View();
+            var games = _context.GetAllGames();
+
+            var viewModel = new FormatFormViewModel
+            {
+            Games = games
+            };
+            return View(viewModel);
         }
 
         // POST: Formats/Create
@@ -54,100 +60,37 @@ namespace FHM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FormatID,FormatName,FormatDescription,FormatLink")] Format format)
+        public  IActionResult Create(Format format)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(format);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                _context.AddFormat(format);
+                return RedirectToAction("AddGameComplete");
             }
             return View(format);
         }
 
-        // GET: Formats/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public IActionResult AddGameComplete()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var format = await _context.Formats.Include(f => f.Game).SingleOrDefaultAsync(m => m.FormatID == id);
-            if (format == null)
-            {
-                return NotFound();
-            }
-            return View(format);
+            return View();
         }
-
-        // POST: Formats/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("FormatID,FormatName,FormatDescription,FormatLink")] Format format)
-        {
-            if (id != format.FormatID)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(format);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!FormatExists(format.FormatID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(format);
-        }
+  
 
         // GET: Formats/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public IActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var format = await _context.Formats.Include(f => f.Game)
-                .SingleOrDefaultAsync(m => m.FormatID == id);
+            var format =  _context.GetFormatByID(id);
             if (format == null)
             {
                 return NotFound();
             }
 
             return View(format);
-        }
-
-        // POST: Formats/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var format = await _context.Formats.SingleOrDefaultAsync(m => m.FormatID == id);
-            _context.Formats.Remove(format);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool FormatExists(int id)
-        {
-            return _context.Formats.Any(e => e.FormatID == id);
         }
     }
 }

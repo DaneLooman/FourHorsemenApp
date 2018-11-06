@@ -12,23 +12,26 @@
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.FormatName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FormatDescription)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FormatLink)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Game.GameName)
-                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Game.GameName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FormatName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FormatDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FormatLink)
+            </th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Game.GameName)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FormatName)
             </td>
@@ -37,9 +40,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FormatLink)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Game.GameName)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.FormatID">Edit</a> |
