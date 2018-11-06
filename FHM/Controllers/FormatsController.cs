@@ -33,7 +33,7 @@ namespace FHM.Controllers
                 return NotFound();
             }
 
-            var format = await _context.Formats
+            var format = await _context.Formats.Include(f => f.Game)
                 .SingleOrDefaultAsync(m => m.FormatID == id);
             if (format == null)
             {
@@ -73,7 +73,7 @@ namespace FHM.Controllers
                 return NotFound();
             }
 
-            var format = await _context.Formats.SingleOrDefaultAsync(m => m.FormatID == id);
+            var format = await _context.Formats.Include(f => f.Game).SingleOrDefaultAsync(m => m.FormatID == id);
             if (format == null)
             {
                 return NotFound();
@@ -124,7 +124,7 @@ namespace FHM.Controllers
                 return NotFound();
             }
 
-            var format = await _context.Formats
+            var format = await _context.Formats.Include(f => f.Game)
                 .SingleOrDefaultAsync(m => m.FormatID == id);
             if (format == null)
             {
