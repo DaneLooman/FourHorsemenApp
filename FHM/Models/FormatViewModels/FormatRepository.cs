@@ -51,9 +51,9 @@ namespace FHM.Models.FormatViewModels
 
 
 
-        public IEnumerable<Game> GetAllGames()
+        public List<string> GetAllGames()
         {
-            return _appDbContext.Games.ToList();
+            return _appDbContext.Games.Select(g => g.GameName).ToList();
         }
 
     }

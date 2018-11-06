@@ -10,7 +10,7 @@ namespace FHM.Models.FormatViewModels
 {
     public class FormatFormViewModel
     {
-        public IEnumerable<Game> Games { get; set; }
+        public List<string> Games { get; set; }
 
         public int? FormatID { get; set; }
 
