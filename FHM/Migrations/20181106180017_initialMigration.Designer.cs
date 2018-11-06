@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using System;
 
-namespace FHM.Data.Migrations
+namespace FHM.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181105163846_addGame")]
-    partial class addGame
+    [Migration("20181106180017_initialMigration")]
+    partial class initialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -72,7 +72,32 @@ namespace FHM.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("FHM.Models.Game.Game", b =>
+            modelBuilder.Entity("FHM.Models.FormatModels.Format", b =>
+                {
+                    b.Property<int>("FormatID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("FormatDescription")
+                        .IsRequired()
+                        .HasMaxLength(5000);
+
+                    b.Property<string>("FormatLink")
+                        .IsRequired();
+
+                    b.Property<string>("FormatName")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
+                    b.Property<int>("GameID");
+
+                    b.HasKey("FormatID");
+
+                    b.HasIndex("GameID");
+
+                    b.ToTable("Format");
+                });
+
+            modelBuilder.Entity("FHM.Models.GameModel.Game", b =>
                 {
                     b.Property<int>("GameID")
                         .ValueGeneratedOnAdd();
@@ -206,6 +231,14 @@ namespace FHM.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("FHM.Models.FormatModels.Format", b =>
+                {
+                    b.HasOne("FHM.Models.GameModel.Game", "Game")
+                        .WithMany("GameFormats")
+                        .HasForeignKey("GameID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

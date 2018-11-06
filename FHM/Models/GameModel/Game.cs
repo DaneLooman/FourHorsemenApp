@@ -23,6 +23,6 @@ namespace FHM.Models.GameModel
         public string GameImageUrl { get; set; }
         public string GameImageThumbnailURL { get; set; }
         public bool GameIsGameOfTheWeek { get; set; }
-        public ICollection<Format> Formats { get; set; }
+        public ICollection<Format> GameFormats { get; set; }
     }
 }

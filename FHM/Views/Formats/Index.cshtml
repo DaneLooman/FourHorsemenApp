@@ -1,0 +1,52 @@
+﻿@model IEnumerable<FHM.Models.FormatModels.Format>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FormatName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FormatDescription)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FormatLink)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Game.GameName)
+                </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FormatName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FormatDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FormatLink)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Game.GameName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.FormatID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.FormatID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.FormatID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

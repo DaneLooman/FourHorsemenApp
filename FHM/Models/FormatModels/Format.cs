@@ -1,6 +1,8 @@
-﻿using System;
+﻿using FHM.Models.GameModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,9 +18,11 @@ namespace FHM.Models.FormatModels
         [StringLength(5000, ErrorMessage = "Short Desc is required")]
         public string FormatDescription { get; set; }
         [Required]
-        public string FormatLink { get; set; } 
+        public string FormatLink { get; set; }
         [Required]
-        public GameModel.Game Game { get; set; }
+        public Game Game { get; set; }
+        [Required]
+        public int GameID { get; set; }
 
     }
 }
