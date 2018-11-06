@@ -1,5 +1,4 @@
-﻿using FHM.Models.FormatModels;
-using FHM.Models.GameModel;
+﻿using FHM.Models.GameModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,20 +23,6 @@ namespace FHM.Data
                 foreach (Game g in games)
                 {
                     context.Games.Add(g);
-                }
-            }
-            if (!context.Formats.Any())
-            {
-                var formats = new Format[]
-                {
-                new Format {FormatName = "Standard", FormatDesc="Last two years of magic starting in Sept.", FormatLink="https://magic.wizards.com/en/content/standard-formats-magic-gathering", GameID=1},
-                new Format {FormatName = "Modern", FormatDesc="Last ten years of magic", FormatLink="https://magic.wizards.com/en/game-info/gameplay/formats/modern", GameID=1},
-                new Format {FormatName = "Standard", FormatDesc="Last two years of Pokemon starting in July", FormatLink="https://www.pokemon.com/us/pokemon-news/2019-season-pokemon-tcg-format-rotation/", GameID=2}
-                };
-
-                foreach (Format f in formats)
-                {
-                    context.Formats.Add(f);
                 }
             }
             context.SaveChanges();
