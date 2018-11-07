@@ -1,5 +1,6 @@
 ﻿using FHM.Data;
 using FHM.Models.FormatModels;
+using FHM.Models.FormatViewModels;
 using FHM.Models.GameModel;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -7,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FHM.Models.FormatViewModels
+namespace FHM.Models.FormatModels
 {
     public class FormatRepository : IFormatRepository
     {
@@ -26,7 +27,7 @@ namespace FHM.Models.FormatViewModels
 
         public Format GetFormatByID(int? formatID)
         {
-            return _appDbContext.Formats.Include(f => f.Game) 
+            return _appDbContext.Formats.Include(f => f.Game)
             .FirstOrDefault(f => f.FormatID == formatID);
         }
 
@@ -49,11 +50,15 @@ namespace FHM.Models.FormatViewModels
             _appDbContext.SaveChanges();
         }
 
-
-
-        public List<string> GetAllGames()
+        public struct GamePair
         {
-            return _appDbContext.Games.Select(g => g.GameName).ToList();
+            public int GameID;
+            public string GameName;
+        }
+
+        public IEnumerable<Game> GetAllGames()
+        {
+            return _appDbContext.Games.ToList();
         }
 
     }

@@ -5,13 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FHM.Models.FormatViewModels
+namespace FHM.Models.FormatModels
 {
     public interface IFormatRepository
     {
         IEnumerable<Format> GetAllFormats();
         Format GetFormatByID(int? gameID);
         void AddFormat(Format format);
-        List<string> GetAllGames();
+        IEnumerable<Game> GetAllGames();
     }
 }

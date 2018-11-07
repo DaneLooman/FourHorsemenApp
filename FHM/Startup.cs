@@ -13,6 +13,7 @@ using FHM.Models;
 using FHM.Services;
 using FHM.Models.GameModel;
 using FHM.Models.FormatViewModels;
+using FHM.Models.FormatModels;
 
 namespace FHM
 {
