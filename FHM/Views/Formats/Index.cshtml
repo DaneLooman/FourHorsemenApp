@@ -39,7 +39,7 @@
                 @Html.DisplayFor(modelItem => item.FormatDescription)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FormatLink)
+               <a href="@Html.DisplayFor(modelItem => item.FormatLink)" target="_blank"> Official Format Rules</a>
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.FormatID">Edit</a> |
