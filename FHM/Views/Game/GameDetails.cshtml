@@ -11,6 +11,12 @@
         <div class="caption">
             <p>@Model.GameLongDescription</p>
         </div>
-        <a asp-controller="Game" asp-action="Delete" asp-route-id="@Model.GameID">Delete</a>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div>
+                <a asp-controller="Game" asp-action="Delete" asp-route-id="@Model.GameID">Delete</a>
+            </div>
+        }
     </div>
 </div>
+</br>

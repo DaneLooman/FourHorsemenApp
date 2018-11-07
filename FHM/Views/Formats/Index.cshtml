@@ -5,10 +5,12 @@
 }
 
 <h2>Index</h2>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+@if (User.Identity.IsAuthenticated)
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
 <table class="table">
     <thead>
         <tr>
@@ -27,7 +29,8 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model)
+        {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Game.GameName)
@@ -39,14 +42,17 @@
                 @Html.DisplayFor(modelItem => item.FormatDescription)
             </td>
             <td>
-               <a href="@Html.DisplayFor(modelItem => item.FormatLink)" target="_blank"> Official Format Rules</a>
+                <a href="@Html.DisplayFor(modelItem => item.FormatLink)" target="_blank"> Official Format Rules</a>
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.FormatID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.FormatID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.FormatID">Delete</a>
-            </td>
-        </tr>
-}
+            @if (User.Identity.IsAuthenticated)
+            {
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.FormatID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.FormatID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.FormatID">Delete</a>
+                </td>
+            }
+            </tr>
+        }
     </tbody>
 </table>
