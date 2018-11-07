@@ -60,6 +60,33 @@ namespace FHM.Controllers
         {
             return View();
         }
+                // GET: Formats/Delete/5
+        public IActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var game = _gameRepository.GetGameByID(id);
+            if (game == null)
+            {
+                return NotFound();
+            }
+
+            return View(game);
+        }
+        [HttpPost]
+        public IActionResult Delete(int gameID)
+        {
+            if (ModelState.IsValid)
+            {
+                _gameRepository.DeleteGame(gameID);
+                return RedirectToAction("Index");
+            }
+            return View(gameID);
+        }
+
 
     }
 }

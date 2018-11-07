@@ -21,7 +21,7 @@ namespace FHM.Models.GameModel
             return _appDbContext.Games;
         }
 
-        public Game GetGameByID(int gameID)
+        public Game GetGameByID(int? gameID)
         {
             return _appDbContext.Games.FirstOrDefault(g => g.GameID == gameID);
         }
@@ -31,5 +31,21 @@ namespace FHM.Models.GameModel
             _appDbContext.Games.Add(game);
             _appDbContext.SaveChanges();
         }
+
+        public void DeleteGame (int gameID)
+        {
+            var deletedFormats = _appDbContext.Formats.Where(f => f.GameID == gameID).ToList();
+
+            foreach (var format in deletedFormats)
+                _appDbContext.Formats.Remove(format);
+
+            var deletedGame = _appDbContext.Games.First(d => d.GameID == gameID);
+            _appDbContext.Games.Remove(deletedGame);
+            _appDbContext.SaveChanges();
+        }
+
+
+
+
     }
 }
