@@ -13,5 +13,6 @@ namespace FHM.Models.FormatModels
         Format GetFormatByID(int? gameID);
         void AddFormat(Format format);
         IEnumerable<Game> GetAllGames();
+        void DeleteFormat(int format);
     }
 }

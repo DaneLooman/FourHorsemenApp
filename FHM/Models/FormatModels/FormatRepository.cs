@@ -50,17 +50,16 @@ namespace FHM.Models.FormatModels
             _appDbContext.SaveChanges();
         }
 
-        public struct GamePair
-        {
-            public int GameID;
-            public string GameName;
-        }
-
         public IEnumerable<Game> GetAllGames()
         {
             return _appDbContext.Games.ToList();
         }
-
+        public void DeleteFormat(int formatID)
+        {
+            var deletedformat = _appDbContext.Formats.First(d => d.FormatID == formatID);
+            _appDbContext.Formats.Remove(deletedformat);
+            _appDbContext.SaveChanges();
+        }
     }
 }
 
