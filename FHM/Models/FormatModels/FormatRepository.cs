@@ -60,6 +60,26 @@ namespace FHM.Models.FormatModels
             _appDbContext.Formats.Remove(deletedformat);
             _appDbContext.SaveChanges();
         }
+
+        public void EditFormatView(FormatFormViewModel viewModel)
+        {
+            Format format = new Format();
+
+            format.FormatName = viewModel.FormatName;
+            format.FormatLink = viewModel.FormatLink;
+            format.FormatDescription = viewModel.FormatDescription;
+            format.GameID = format.GameID;
+
+            EditFormat(format);
+        }
+
+        public void EditFormat(Format format)
+        {
+
+            _appDbContext.Formats.Update(format);
+            _appDbContext.SaveChanges();
+        }
+
     }
 }
 

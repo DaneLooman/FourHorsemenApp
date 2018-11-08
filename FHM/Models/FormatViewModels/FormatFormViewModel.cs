@@ -10,6 +10,9 @@ namespace FHM.Models.FormatViewModels
 {
     public class FormatFormViewModel
     {
+        public FormatFormViewModel()
+        {
+        }
         public IEnumerable<Game> Games { get; set; }
 
         public int? FormatID { get; set; }
@@ -36,11 +39,6 @@ namespace FHM.Models.FormatViewModels
             {
                 return FormatID != 0 ? "Edit Format" : "New Format";
             }
-        }
-
-        public FormatFormViewModel()
-        {
-            FormatID = 0;
         }
 
         public FormatFormViewModel(Format format)

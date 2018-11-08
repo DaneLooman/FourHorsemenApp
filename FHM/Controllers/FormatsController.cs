@@ -34,7 +34,7 @@ namespace FHM.Controllers
                 return NotFound();
             }
 
-            var format = _context.GetAllFormats();
+            var format = _context.GetFormatByID(id);
             if (format == null)
             {
                 return NotFound();
@@ -101,5 +101,51 @@ namespace FHM.Controllers
             }
             return View(formatID);
         }
+        public IActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var format = _context.GetFormatByID(id);
+            if (format == null)
+            {
+                return NotFound();
+            }
+            var games = _context.GetAllGames();
+
+            var viewModel = new FormatFormViewModel
+            {
+            FormatID = id,
+            FormatName = format.FormatName,
+            FormatDescription = format.FormatDescription,
+            FormatLink = format.FormatLink,
+            GameID = format.GameID,
+            Games = games
+            };
+            return View(viewModel);
+
+        }
+        [HttpPost]
+        public IActionResult Edit(Format format)
+        {
+            int formatID = format.FormatID;
+            if (ModelState.IsValid)
+            {
+                _context.EditFormat(format);
+                return RedirectToAction("Details",new {id = formatID});
+            }
+            return View(format.FormatID);
+        }
+
+
+
+
+
+
+
+
+
     }
 }
