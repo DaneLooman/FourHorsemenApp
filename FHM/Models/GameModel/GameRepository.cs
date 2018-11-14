@@ -44,7 +44,11 @@ namespace FHM.Models.GameModel
             _appDbContext.SaveChanges();
         }
 
-
+        public void EditGame(Game game)
+        {
+            _appDbContext.Games.Update(game);
+            _appDbContext.SaveChanges();
+        }
 
 
     }

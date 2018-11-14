@@ -1,0 +1,54 @@
+﻿@model FHM.Models.GameModel.Game
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Format</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="GameName" class="control-label"></label>
+                <input asp-for="GameName" class="form-control" />
+                <span asp-validation-for="GameName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GameLongDescription" class="control-label"></label>
+                <input asp-for="GameLongDescription" class="form-control" />
+                <span asp-validation-for="GameLongDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GameShortDescription" class="control-label"></label>
+                <input asp-for="GameShortDescription" class="form-control" />
+                <span asp-validation-for="GameShortDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GameImageUrl" class="control-label"></label>
+                <input asp-for="GameImageUrl" class="form-control" />
+                <span asp-validation-for="GameImageUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GameImageThumbnailURL" class="control-label"></label>
+                <input asp-for="GameImageThumbnailURL" class="form-control" />
+                <span asp-validation-for="GameImageThumbnailURL" class="text-danger"></span>
+            </div>
+            <div class="checkbox">
+                <input asp-for="GameIsGameOfTheWeek" />
+                <label asp-for="GameIsGameOfTheWeek">
+                </label>
+            </div>
+            <input type="hidden" asp-for="GameID" />
+            <input type="submit" value="Update" class="btn btn-default" /> |
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

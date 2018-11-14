@@ -86,7 +86,34 @@ namespace FHM.Controllers
             }
             return View(gameID);
         }
+        public IActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            var game = _gameRepository.GetGameByID(id);
+            if (game == null)
+            {
+                return NotFound();
+            }
+            var games = _gameRepository.GetAllGames();
+
+            return View(game);
+
+        }
+        [HttpPost]
+        public IActionResult Edit(Game game)
+        {
+            int gameID = game.GameID;
+            if (ModelState.IsValid)
+            {
+                _gameRepository.EditGame(game);
+                return RedirectToAction("GameDetails", new { id = gameID });
+            }
+            return View(game.GameID);
+        }
 
     }
 }

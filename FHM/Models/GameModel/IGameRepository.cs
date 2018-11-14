@@ -11,5 +11,6 @@ namespace FHM.Models.GameModel
         Game GetGameByID(int? gameID);
         void AddGame(Game game);
         void DeleteGame(int gameID);
+        void EditGame(Game game);
     }
 }

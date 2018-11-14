@@ -138,14 +138,5 @@ namespace FHM.Controllers
             }
             return View(format.FormatID);
         }
-
-
-
-
-
-
-
-
-
     }
 }
