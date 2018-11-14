@@ -30,12 +30,18 @@ namespace FHM.Controllers
             return View(gameViewModel);
         }
 
-        public IActionResult GameDetails(int gameId)
+        public IActionResult GameDetails(int? id)
         {
-            var game = _gameRepository.GetGameByID(gameId);
-            if (game == null)
+            if (id == null)
+            {
                 return NotFound();
+            }
 
+            var game = _gameRepository.GetGameByID(id);
+            if (game == null)
+            {
+                return NotFound();
+            }
             return View(game);
         }
         [Authorize]
