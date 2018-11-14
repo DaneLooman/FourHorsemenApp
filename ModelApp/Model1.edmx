@@ -188,7 +188,7 @@
           <End Type="Model1.Tournament" Role="Tournament" Multiplicity="1" />
         </Association>
         <Association Name="TournamentFormat">
-          <End Type="Model1.Tournament" Role="Tournament" Multiplicity="1" />
+          <End Type="Model1.Tournament" Role="Tournament" Multiplicity="*" />
           <End Type="Model1.Format" Role="Format" Multiplicity="1" />
         </Association>
         <Association Name="UserTournament">
