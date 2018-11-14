@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="Model1TargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Games" EntityType="Model1.Game" />
+          <EntitySet Name="Formats" EntityType="Model1.Format" />
+          <EntitySet Name="Users" EntityType="Model1.User" />
+          <AssociationSet Name="GameFormat" Association="Model1.GameFormat">
+            <End Role="Game" EntitySet="Games" />
+            <End Role="Format" EntitySet="Formats" />
+          </AssociationSet>
+          <EntitySet Name="PlayerIDs" EntityType="Model1.PlayerIDs" />
+          <AssociationSet Name="UserPlayerIDs" Association="Model1.UserPlayerIDs">
+            <End Role="User" EntitySet="Users" />
+            <End Role="PlayerIDs" EntitySet="PlayerIDs" />
+          </AssociationSet>
+          <AssociationSet Name="GamePlayerIDs" Association="Model1.GamePlayerIDs">
+            <End Role="Game" EntitySet="Games" />
+            <End Role="PlayerIDs" EntitySet="PlayerIDs" />
+          </AssociationSet>
+          <EntitySet Name="Roles" EntityType="Model1.Roles" />
+          <AssociationSet Name="UserRoles" Association="Model1.UserRoles">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Roles" EntitySet="Roles" />
+          </AssociationSet>
+          <EntitySet Name="Tournaments" EntityType="Model1.Tournament" />
+          <AssociationSet Name="Organizes" Association="Model1.Organizes">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Game" EntitySet="Games" />
+          </AssociationSet>
+          <EntitySet Name="User_Tournament" EntityType="Model1.User_Tournament" />
+          <AssociationSet Name="UserUser_Tournament" Association="Model1.UserUser_Tournament">
+            <End Role="User" EntitySet="Users" />
+            <End Role="User_Tournament" EntitySet="User_Tournament" />
+          </AssociationSet>
+          <AssociationSet Name="User_TournamentTournament" Association="Model1.User_TournamentTournament">
+            <End Role="User_Tournament" EntitySet="User_Tournament" />
+            <End Role="Tournament" EntitySet="Tournaments" />
+          </AssociationSet>
+          <AssociationSet Name="TournamentFormat" Association="Model1.TournamentFormat">
+            <End Role="Tournament" EntitySet="Tournaments" />
+            <End Role="Format" EntitySet="Formats" />
+          </AssociationSet>
+          <AssociationSet Name="UserTournament" Association="Model1.UserTournament">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Tournament" EntitySet="Tournaments" />
+          </AssociationSet>
+          <EntitySet Name="Ads" EntityType="Model1.Ad" />
+          <AssociationSet Name="AdGame" Association="Model1.AdGame">
+            <End Role="Ad" EntitySet="Ads" />
+            <End Role="Game" EntitySet="Games" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Game">
+          <Key>
+            <PropertyRef Name="GameID" />
+          </Key>
+          <Property Name="GameID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GameName" Type="String" Nullable="false" />
+          <Property Name="GameImg" Type="String" Nullable="false" />
+          <Property Name="GameShortDesc" Type="String" Nullable="false" />
+          <Property Name="GameLongDesc" Type="String" Nullable="false" />
+          <Property Name="GameLink" Type="String" Nullable="false" />
+          <NavigationProperty Name="Formats" Relationship="Model1.GameFormat" FromRole="Game" ToRole="Format" />
+          <NavigationProperty Name="PlayerIDs" Relationship="Model1.GamePlayerIDs" FromRole="Game" ToRole="PlayerIDs" />
+          <NavigationProperty Name="Users" Relationship="Model1.Organizes" FromRole="Game" ToRole="User" />
+          <NavigationProperty Name="Ads" Relationship="Model1.AdGame" FromRole="Game" ToRole="Ad" />
+        </EntityType>
+        <EntityType Name="Format">
+          <Key>
+            <PropertyRef Name="FormatID" />
+          </Key>
+          <Property Name="FormatID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FormatName" Type="String" Nullable="false" />
+          <Property Name="FormatDesc" Type="String" Nullable="false" />
+          <Property Name="FormatLink" Type="String" Nullable="false" />
+          <NavigationProperty Name="Game" Relationship="Model1.GameFormat" FromRole="Format" ToRole="Game" />
+          <Property Name="GameGameID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Tournament" Relationship="Model1.TournamentFormat" FromRole="Format" ToRole="Tournament" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="PlayerIDs" Relationship="Model1.UserPlayerIDs" FromRole="User" ToRole="PlayerIDs" />
+          <NavigationProperty Name="Role" Relationship="Model1.UserRoles" FromRole="User" ToRole="Roles" />
+          <NavigationProperty Name="Games" Relationship="Model1.Organizes" FromRole="User" ToRole="Game" />
+          <NavigationProperty Name="User_Tournament" Relationship="Model1.UserUser_Tournament" FromRole="User" ToRole="User_Tournament" />
+          <NavigationProperty Name="Tournaments" Relationship="Model1.UserTournament" FromRole="User" ToRole="Tournament" />
+        </EntityType>
+        <Association Name="GameFormat">
+          <End Type="Model1.Game" Role="Game" Multiplicity="1" />
+          <End Type="Model1.Format" Role="Format" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="GameID" />
+            </Principal>
+            <Dependent Role="Format">
+              <PropertyRef Name="GameGameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PlayerIDs">
+          <Key>
+            <PropertyRef Name="IDNumber" />
+          </Key>
+          <Property Name="IDNumber" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="User" Relationship="Model1.UserPlayerIDs" FromRole="PlayerIDs" ToRole="User" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Game" Relationship="Model1.GamePlayerIDs" FromRole="PlayerIDs" ToRole="Game" />
+          <Property Name="GameGameID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="UserPlayerIDs">
+          <End Type="Model1.User" Role="User" Multiplicity="1" />
+          <End Type="Model1.PlayerIDs" Role="PlayerIDs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PlayerIDs">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GamePlayerIDs">
+          <End Type="Model1.Game" Role="Game" Multiplicity="1" />
+          <End Type="Model1.PlayerIDs" Role="PlayerIDs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="GameID" />
+            </Principal>
+            <Dependent Role="PlayerIDs">
+              <PropertyRef Name="GameGameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="User" Relationship="Model1.UserRoles" FromRole="Roles" ToRole="User" />
+        </EntityType>
+        <Association Name="UserRoles">
+          <End Type="Model1.User" Role="User" Multiplicity="1" />
+          <End Type="Model1.Roles" Role="Roles" Multiplicity="0..1" />
+        </Association>
+        <EntityType Name="Tournament">
+          <Key>
+            <PropertyRef Name="TournamentID" />
+          </Key>
+          <Property Name="TournamentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TCost" Type="String" Nullable="false" />
+          <Property Name="TDesc" Type="String" Nullable="false" />
+          <Property Name="TDateTimeStart" Type="String" Nullable="false" />
+          <NavigationProperty Name="User_Tournament" Relationship="Model1.User_TournamentTournament" FromRole="Tournament" ToRole="User_Tournament" />
+          <NavigationProperty Name="Format" Relationship="Model1.TournamentFormat" FromRole="Tournament" ToRole="Format" />
+          <NavigationProperty Name="User" Relationship="Model1.UserTournament" FromRole="Tournament" ToRole="User" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="Organizes">
+          <End Type="Model1.User" Role="User" Multiplicity="*" />
+          <End Type="Model1.Game" Role="Game" Multiplicity="*" />
+        </Association>
+        <EntityType Name="User_Tournament" >
+          <Property Name="Paid" Type="String" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Model1.UserUser_Tournament" FromRole="User_Tournament" ToRole="User" />
+          <NavigationProperty Name="Tournament" Relationship="Model1.User_TournamentTournament" FromRole="User_Tournament" ToRole="Tournament" />
+        </EntityType>
+        <Association Name="UserUser_Tournament">
+          <End Type="Model1.User" Role="User" Multiplicity="1" />
+          <End Type="Model1.User_Tournament" Role="User_Tournament" Multiplicity="*" />
+        </Association>
+        <Association Name="User_TournamentTournament">
+          <End Type="Model1.User_Tournament" Role="User_Tournament" Multiplicity="*" />
+          <End Type="Model1.Tournament" Role="Tournament" Multiplicity="1" />
+        </Association>
+        <Association Name="TournamentFormat">
+          <End Type="Model1.Tournament" Role="Tournament" Multiplicity="1" />
+          <End Type="Model1.Format" Role="Format" Multiplicity="1" />
+        </Association>
+        <Association Name="UserTournament">
+          <End Type="Model1.User" Role="User" Multiplicity="1" />
+          <End Type="Model1.Tournament" Role="Tournament" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tournament">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Ad">
+          <Key>
+            <PropertyRef Name="AdID" />
+          </Key>
+          <Property Name="AdID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdName" Type="String" Nullable="false" />
+          <Property Name="AdLink" Type="String" Nullable="false" />
+          <NavigationProperty Name="Game" Relationship="Model1.AdGame" FromRole="Ad" ToRole="Game" />
+        </EntityType>
+        <Association Name="AdGame">
+          <End Type="Model1.Ad" Role="Ad" Multiplicity="*" />
+          <End Type="Model1.Game" Role="Game" Multiplicity="0..1" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="Model1" />
+        <Alias Key="Target" Value="Model1.Store" />
+        <EntityContainerMapping CdmEntityContainer="Model1Container" StorageEntityContainer="Model1TargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
