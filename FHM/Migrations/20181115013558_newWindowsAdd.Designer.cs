@@ -11,8 +11,8 @@ using System;
 namespace FHM.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181106180017_initialMigration")]
-    partial class initialMigration
+    [Migration("20181115013558_newWindowsAdd")]
+    partial class newWindowsAdd
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -94,7 +94,7 @@ namespace FHM.Migrations
 
                     b.HasIndex("GameID");
 
-                    b.ToTable("Format");
+                    b.ToTable("Formats");
                 });
 
             modelBuilder.Entity("FHM.Models.GameModel.Game", b =>
