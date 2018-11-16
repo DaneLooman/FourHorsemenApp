@@ -25,6 +25,7 @@ namespace FHM.Data
                 {
                     context.Games.Add(g);
                 }
+                context.SaveChanges();
             }
             if (!context.Formats.Any())
             {
