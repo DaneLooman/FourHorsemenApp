@@ -1,5 +1,6 @@
 ﻿
 using FHM.Models.FormatModels;
+using FHM.Models.PlayerIDModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -24,5 +25,6 @@ namespace FHM.Models.GameModel
         public string GameImageThumbnailURL { get; set; }
         public bool GameIsGameOfTheWeek { get; set; }
         public ICollection<Format> GameFormats { get; set; }
+        public ICollection<PlayerID> PlayerIDs { get; set; }
     }
 }
