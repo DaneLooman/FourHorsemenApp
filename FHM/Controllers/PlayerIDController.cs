@@ -52,11 +52,11 @@ namespace FHM.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(PlayerID playerID)
+        public IActionResult Create(PlayerIdViewModel playerID)
         {
             if (ModelState.IsValid)
             {
-                _context.AddPlayerID(playerID);
+                _context.AddPlayerIdView(playerID);
                 return RedirectToAction("AddPlayerIDCompelte");
             }
             return View(playerID);
