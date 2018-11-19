@@ -19,7 +19,7 @@ namespace FHM.Models.PlayerIDModel
         public int GameId { get; set; }
         public Game Game { get; set; }
         //user info
-        public int PlayerId { get; set; }
-        public Player Player { get; set; }
+        public string PlayerId { get; set; }
+        public ApplicationUser Player { get; set; }
     }
 }

@@ -11,8 +11,8 @@ using System;
 namespace FHM.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181116200844_PlayerIDs")]
-    partial class PlayerIDs
+    [Migration("20181119185221_removedPlayer")]
+    partial class removedPlayer
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -125,20 +125,6 @@ namespace FHM.Migrations
                     b.ToTable("Game");
                 });
 
-            modelBuilder.Entity("FHM.Models.Player", b =>
-                {
-                    b.Property<int>("PlayerId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("UserId");
-
-                    b.HasKey("PlayerId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Players");
-                });
-
             modelBuilder.Entity("FHM.Models.PlayerIDModel.PlayerID", b =>
                 {
                     b.Property<int>("PlayerIDID")
@@ -148,14 +134,15 @@ namespace FHM.Migrations
 
                     b.Property<string>("PlayerGameID");
 
-                    b.Property<int>("PlayerId");
+                    b.Property<string>("PlayerId");
 
                     b.HasKey("PlayerIDID");
 
                     b.HasIndex("PlayerId");
 
                     b.HasIndex("GameId", "PlayerId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[PlayerId] IS NOT NULL");
 
                     b.ToTable("PlayerIDs");
                 });
@@ -276,13 +263,6 @@ namespace FHM.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("FHM.Models.Player", b =>
-                {
-                    b.HasOne("FHM.Models.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-                });
-
             modelBuilder.Entity("FHM.Models.PlayerIDModel.PlayerID", b =>
                 {
                     b.HasOne("FHM.Models.GameModel.Game", "Game")
@@ -290,10 +270,9 @@ namespace FHM.Migrations
                         .HasForeignKey("GameId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("FHM.Models.Player", "Player")
+                    b.HasOne("FHM.Models.ApplicationUser", "Player")
                         .WithMany("PlayerIDs")
-                        .HasForeignKey("PlayerId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("PlayerId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

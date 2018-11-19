@@ -1,0 +1,65 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using FHM.Models.PlayerIDModel;
+using FHM.Models.PlayerIdViewModels;
+using Microsoft.AspNetCore.Mvc;
+
+namespace FHM.Controllers
+{
+    public class PlayerIDController : Controller
+    {
+        private readonly IPlayerIDRepository _context;
+
+        public PlayerIDController(IPlayerIDRepository context)
+        {
+            _context = context;
+        }
+
+        public IActionResult Index()
+        {
+            return View(_context);
+        }
+
+        public IActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var playerID = _context.GetPlayerIDByID(id);
+            if (playerID == null)
+            {
+                return NotFound();
+            }
+
+            return View(playerID);
+        }
+        public IActionResult Create()
+        {
+            var games = _context.GetAllGames();
+            var players = _context.GetAllPlayers();
+
+            var viewModel = new PlayerIdViewModel
+            {
+                Games = games,
+                Players = players
+
+            };
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult Create(PlayerID playerID)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.AddPlayerID(playerID);
+                return RedirectToAction("AddPlayerIDCompelte");
+            }
+            return View(playerID);
+        }
+    }
+}

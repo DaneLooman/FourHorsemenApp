@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace FHM.Migrations
 {
-    public partial class newWindowsAdd : Migration
+    public partial class removedPlayer : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -194,6 +194,33 @@ namespace FHM.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "PlayerIDs",
+                columns: table => new
+                {
+                    PlayerIDID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    GameId = table.Column<int>(nullable: false),
+                    PlayerGameID = table.Column<string>(nullable: true),
+                    PlayerId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PlayerIDs", x => x.PlayerIDID);
+                    table.ForeignKey(
+                        name: "FK_PlayerIDs_Game_GameId",
+                        column: x => x.GameId,
+                        principalTable: "Game",
+                        principalColumn: "GameID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PlayerIDs_AspNetUsers_PlayerId",
+                        column: x => x.PlayerId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -237,6 +264,18 @@ namespace FHM.Migrations
                 name: "IX_Formats_GameID",
                 table: "Formats",
                 column: "GameID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PlayerIDs_PlayerId",
+                table: "PlayerIDs",
+                column: "PlayerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PlayerIDs_GameId_PlayerId",
+                table: "PlayerIDs",
+                columns: new[] { "GameId", "PlayerId" },
+                unique: true,
+                filter: "[PlayerId] IS NOT NULL");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -260,13 +299,16 @@ namespace FHM.Migrations
                 name: "Formats");
 
             migrationBuilder.DropTable(
+                name: "PlayerIDs");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "Game");
 
             migrationBuilder.DropTable(
-                name: "Game");
+                name: "AspNetUsers");
         }
     }
 }

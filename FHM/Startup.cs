@@ -14,6 +14,7 @@ using FHM.Services;
 using FHM.Models.GameModel;
 using FHM.Models.FormatViewModels;
 using FHM.Models.FormatModels;
+using FHM.Models.PlayerIDModel;
 
 namespace FHM
 {
@@ -40,6 +41,7 @@ namespace FHM
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddTransient<IGameRepository, GameRepository>();
             services.AddTransient<IFormatRepository, FormatRepository>();
+            services.AddTransient<IPlayerIDRepository, PlayerIDRepository>();
             services.AddMvc();
         }
 
