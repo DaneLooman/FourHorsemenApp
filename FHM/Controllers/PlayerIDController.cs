@@ -19,7 +19,8 @@ namespace FHM.Controllers
 
         public IActionResult Index()
         {
-            return View(_context);
+            var playerIDs = _context.GetAllPlayerIDs();
+            return View(playerIDs);
         }
 
         public IActionResult Details(int? id)
@@ -57,7 +58,7 @@ namespace FHM.Controllers
             if (ModelState.IsValid)
             {
                 _context.AddPlayerIdView(playerID);
-                return RedirectToAction("AddPlayerIDCompelte");
+                return RedirectToAction("Index");
             }
             return View(playerID);
         }

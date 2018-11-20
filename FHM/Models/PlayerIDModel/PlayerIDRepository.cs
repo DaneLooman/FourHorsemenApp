@@ -30,8 +30,18 @@ namespace FHM.Models.PlayerIDModel
 
         public void AddPlayerID(PlayerID playerID)
         {
-            _context.PlayerIDs.Add(playerID);
-            _context.SaveChanges();
+            var count = _context.PlayerIDs.Where(p => p.GameId == playerID.GameId && p.PlayerId == playerID.PlayerId).Count();
+
+            if (count > 0)
+            {
+                return;
+            }
+            else
+            {
+                _context.PlayerIDs.Add(playerID);
+                _context.SaveChanges();
+          
+            }
         }
 
         public void DeletePlayerID(int? playerIDID)
@@ -54,9 +64,10 @@ namespace FHM.Models.PlayerIDModel
 
         public IEnumerable<PlayerID> GetAllPlayerIDs()
         {
-            return _context.PlayerIDs.Include(f => f.Player)
-                .ThenInclude(f => f.Id)
-                .Include(f => f.Game); 
+            return _context.PlayerIDs
+                .Include(f => f.Player)
+                .Include(f => f.Game)
+                .ToList(); 
         }
 
         public IEnumerable<PlayerID> GetAllPlayerIDsByPlayer(string userID)
