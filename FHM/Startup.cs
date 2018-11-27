@@ -15,6 +15,7 @@ using FHM.Models.GameModel;
 using FHM.Models.FormatViewModels;
 using FHM.Models.FormatModels;
 using FHM.Models.PlayerIDModel;
+using FHM.Models.TournamentModels;
 
 namespace FHM
 {
@@ -42,6 +43,7 @@ namespace FHM
             services.AddTransient<IGameRepository, GameRepository>();
             services.AddTransient<IFormatRepository, FormatRepository>();
             services.AddTransient<IPlayerIDRepository, PlayerIDRepository>();
+            services.AddTransient<ITournamentRepository, TournamentRepository>();
             services.AddMvc();
         }
 

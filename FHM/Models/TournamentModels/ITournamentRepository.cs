@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FHM.Models.TournamentModels
 {
-    interface ITournamentRepository
+    public interface ITournamentRepository
     {
         IEnumerable<Tournament> GetAllTournaments();
         Tournament GetTournamentByID(int? tournamentID);
