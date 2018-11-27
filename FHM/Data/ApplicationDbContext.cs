@@ -8,6 +8,7 @@ using FHM.Models;
 using FHM.Models.GameModel;
 using FHM.Models.FormatModels;
 using FHM.Models.PlayerIDModel;
+using FHM.Models.TournamentModels;
 
 namespace FHM.Data
 {
@@ -22,7 +23,7 @@ namespace FHM.Data
         public DbSet<Game> Games { get; set; }
         public DbSet<Format> Formats { get; set; }
         public DbSet<PlayerID> PlayerIDs { get; set; }
-
+        public DbSet<Tournament> Tournaments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
