@@ -6,17 +6,24 @@ using FHM.Models.GameModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using FHM.Models.GameViewModels;
+using FHM.Models.FormatModels;
+using FHM.Models.TournamentModels;
 
 namespace FHM.Controllers
 {
     public class GameController : Controller
     {
         private readonly IGameRepository _gameRepository;
+        private readonly IFormatRepository _formatRepository;
+        private readonly ITournamentRepository _tournamentRepository;
 
-        public GameController(IGameRepository gameRepository)
+        public GameController(IGameRepository gameRepository, IFormatRepository formatRepository, ITournamentRepository tournamentRepository)
         {
             _gameRepository = gameRepository;
+            _formatRepository = formatRepository;
+            _tournamentRepository = tournamentRepository;
         }
+
         public IActionResult Index()
         {
             var games = _gameRepository.GetAllGames().OrderBy(g => g.GameName);
@@ -42,7 +49,15 @@ namespace FHM.Controllers
             {
                 return NotFound();
             }
-            return View(game);
+
+            var gameViewModel = new GameViewModel()
+            {
+                Game = game,
+                Formats = _formatRepository.GetAllFormats().Where(f => f.GameID == game.GameID).ToList(),
+                Tournaments = _tournamentRepository.GetAllTournaments().Where(f => f.GameID == game.GameID).ToList()
+            };
+
+            return View(gameViewModel);
         }
         [Authorize]
         public IActionResult AddGame()
