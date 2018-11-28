@@ -9,6 +9,6 @@ namespace FHM.Models.GameViewModels
     public class GameViewModel
     {
         public string Title { get; set; }
-        public List<GameModel.Game> Games { get; set; }
+        public List<Game> Games { get; set; }
     }
 }
