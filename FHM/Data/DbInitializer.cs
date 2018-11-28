@@ -1,5 +1,6 @@
 ﻿using FHM.Models.FormatModels;
 using FHM.Models.GameModel;
+using FHM.Models.TournamentModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,6 +40,26 @@ namespace FHM.Data
                 foreach (Format f in formats)
                 {
                     context.Formats.Add(f);
+                }
+                context.SaveChanges();
+            }
+            if (!context.Tournaments.Any())
+            {
+                var tournaments = new Tournament[]
+                {
+                new Tournament {TournamentName = "Friday Night Magic",
+                    TournamentDescription ="Player Magic Every Friday",
+                    GameID = 1,
+                    TournamentFee = 4.95M,
+                    TournamentStartTime = new DateTime(2020, 1, 1, 18, 30, 0),
+                    TournamentGame = context.Games.Where(p => p.GameID == 1).FirstOrDefault(),
+                    TournamentFormat = context.Formats.Where(p => p.FormatID == 1).FirstOrDefault(),
+                },
+                };
+
+                foreach (Tournament t in tournaments)
+                {
+                    context.Tournaments.Add(t);
                 }
                 context.SaveChanges();
             }

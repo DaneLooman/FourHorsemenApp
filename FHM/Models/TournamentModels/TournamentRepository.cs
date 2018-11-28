@@ -50,7 +50,7 @@ namespace FHM.Models.TournamentModels
 
         public IEnumerable<Tournament> GetAllTournaments()
         {
-            return _appDbContext.Tournaments.ToList();
+            return _appDbContext.Tournaments.Include(f => f.TournamentFormat).ToList();
         }
 
         public Tournament GetTournamentByID(int? tournamentID)
