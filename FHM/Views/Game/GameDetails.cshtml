@@ -7,13 +7,13 @@
     @Model.Game.GameName
     @if (User.Identity.IsAuthenticated)
     {
-    <a asp-action="Edit" asp-route-id="@Model.Game.GameID"> | Edit</a>  
-    <a asp-controller="Game" asp-action="Delete" asp-route-id="@Model.Game.GameID">| Delete</a>
+        <a asp-action="Edit" asp-route-id="@Model.Game.GameID"> | Edit</a>
+        <a asp-controller="Game" asp-action="Delete" asp-route-id="@Model.Game.GameID">| Delete</a>
 
     }
 </h2>
 
-<div class="col-sm-12 col-lg-12 col-md-12">
+<div class="col-sm-6 col-lg-6 col-md-6">
     <div class="thumbnail">
         <img src="@Model.Game.GameImageUrl" alt="">
         <div class="caption">
@@ -22,86 +22,89 @@
     </div>
 
 </div>
-</br>
-<h3>Formats</h3>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Fromat Name
-            </th>
-            <th>
-                Description
-            </th>
-            <th>
-                Official Rules
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Formats)
-        {
+<div class="col-sm-6 col-lg-6 col-md-6">
+    <h3>Formats</h3>
+    <table class="table">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FormatName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FormatDescription)
-                </td>
-                <td>
-                    <a href="@Html.DisplayFor(modelItem => item.FormatLink)" target="_blank"> Official Format Rules</a>
-                </td>
-                @if (User.Identity.IsAuthenticated)
-                {
+                <th>
+                    Fromat Name
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Official Rules
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Formats)
+            {
+                <tr>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.FormatID">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.FormatID">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.FormatID">Delete</a>
+                        @Html.DisplayFor(modelItem => item.FormatName)
                     </td>
-                }
-            </tr>
-        }
-    </tbody>
-</table>
-</br>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Tournament
-            </th>
-            <th>
-                Format
-            </th>
-            <th>
-                Start Time
-            </th>
-            <th>
-                Entry Fee
-            </th>
-
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Tournaments)
-        {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FormatDescription)
+                    </td>
+                    <td>
+                        <a href="@Html.DisplayFor(modelItem => item.FormatLink)" target="_blank"> Official Format Rules</a>
+                    </td>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.FormatID">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.FormatID">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.FormatID">Delete</a>
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="col-sm-12 col-lg-12 col-md-12">
+    <h3>Upcoming Events</h3>
+    </div>
+    <table class="table">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TournamentName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TournamentFormat.FormatName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TournamentStartTime)
-                </td>
-                <td>
-                    $@Html.DisplayFor(modelItem => item.TournamentFee)
-                </td>
-                <td>
-                    <a asp-action="Details" asp-route-id="@item.TournamentID">View/Register</a>
-                </td>
+                <th>
+                    Event
+                </th>
+                <th>
+                    Format
+                </th>
+                <th>
+                    Start Time
+                </th>
+                <th>
+                    Entry Fee
+                </th>
+
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Tournaments)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TournamentName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TournamentFormat.FormatName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TournamentStartTime)
+                    </td>
+                    <td>
+                        $@Html.DisplayFor(modelItem => item.TournamentFee)
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.TournamentID">View/Register</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
