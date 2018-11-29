@@ -56,6 +56,14 @@ namespace FHM.Models.FormatModels
         }
         public void DeleteFormat(int formatID)
         {
+            var deletedTournaments = _appDbContext.Tournaments.Where(f => f.TournamentFormat.FormatID == formatID).ToList();
+
+            foreach (var t in deletedTournaments)
+            _appDbContext.Tournaments.Remove(t);
+            _appDbContext.SaveChanges();
+
+
+
             var deletedformat = _appDbContext.Formats.First(d => d.FormatID == formatID);
             _appDbContext.Formats.Remove(deletedformat);
             _appDbContext.SaveChanges();
