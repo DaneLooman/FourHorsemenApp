@@ -159,7 +159,9 @@ namespace FHM.Migrations
                     b.Property<int>("TournamentID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("GameID");
+                    b.Property<int?>("FormatID");
+
+                    b.Property<int?>("GameID");
 
                     b.Property<bool>("IsMajorTournament");
 
@@ -169,8 +171,6 @@ namespace FHM.Migrations
 
                     b.Property<decimal>("TournamentFee");
 
-                    b.Property<int?>("TournamentFormatFormatID");
-
                     b.Property<string>("TournamentName")
                         .IsRequired()
                         .HasMaxLength(100);
@@ -179,9 +179,9 @@ namespace FHM.Migrations
 
                     b.HasKey("TournamentID");
 
-                    b.HasIndex("GameID");
+                    b.HasIndex("FormatID");
 
-                    b.HasIndex("TournamentFormatFormatID");
+                    b.HasIndex("GameID");
 
                     b.ToTable("Tournaments");
                 });
@@ -320,14 +320,13 @@ namespace FHM.Migrations
 
             modelBuilder.Entity("FHM.Models.TournamentModels.Tournament", b =>
                 {
-                    b.HasOne("FHM.Models.GameModel.Game", "TournamentGame")
-                        .WithMany()
-                        .HasForeignKey("GameID")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("FHM.Models.FormatModels.Format", "TournamentFormat")
                         .WithMany()
-                        .HasForeignKey("TournamentFormatFormatID");
+                        .HasForeignKey("FormatID");
+
+                    b.HasOne("FHM.Models.GameModel.Game", "TournamentGame")
+                        .WithMany()
+                        .HasForeignKey("GameID");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

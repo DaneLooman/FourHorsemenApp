@@ -24,8 +24,9 @@ namespace FHM.Models.TournamentModels
         public DateTime TournamentStartTime { get; set; }
 
         //Foregin Keys
-        public int GameID { get; set; }
+        public int? GameID { get; set; }
         public Game TournamentGame { get; set; }
+        public int? FormatID { get; set; }
         public Format TournamentFormat { get; set; }
         public ICollection<PlayerID> PlayerIDs { get; set; }
     }

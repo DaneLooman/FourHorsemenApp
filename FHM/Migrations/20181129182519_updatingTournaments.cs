@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace FHM.Migrations
 {
-    public partial class removedPlayer : Migration
+    public partial class updatingTournaments : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -32,6 +32,8 @@ namespace FHM.Migrations
                     ConcurrencyStamp = table.Column<string>(nullable: true),
                     Email = table.Column<string>(maxLength: 256, nullable: true),
                     EmailConfirmed = table.Column<bool>(nullable: false),
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
@@ -195,6 +197,37 @@ namespace FHM.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Tournaments",
+                columns: table => new
+                {
+                    TournamentID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    FormatID = table.Column<int>(nullable: true),
+                    GameID = table.Column<int>(nullable: true),
+                    IsMajorTournament = table.Column<bool>(nullable: false),
+                    TournamentDescription = table.Column<string>(maxLength: 5000, nullable: false),
+                    TournamentFee = table.Column<decimal>(nullable: false),
+                    TournamentName = table.Column<string>(maxLength: 100, nullable: false),
+                    TournamentStartTime = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tournaments", x => x.TournamentID);
+                    table.ForeignKey(
+                        name: "FK_Tournaments_Formats_FormatID",
+                        column: x => x.FormatID,
+                        principalTable: "Formats",
+                        principalColumn: "FormatID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Tournaments_Game_GameID",
+                        column: x => x.GameID,
+                        principalTable: "Game",
+                        principalColumn: "GameID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "PlayerIDs",
                 columns: table => new
                 {
@@ -202,7 +235,8 @@ namespace FHM.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     GameId = table.Column<int>(nullable: false),
                     PlayerGameID = table.Column<string>(nullable: true),
-                    PlayerId = table.Column<string>(nullable: true)
+                    PlayerId = table.Column<string>(nullable: true),
+                    TournamentID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -218,6 +252,12 @@ namespace FHM.Migrations
                         column: x => x.PlayerId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_PlayerIDs_Tournaments_TournamentID",
+                        column: x => x.TournamentID,
+                        principalTable: "Tournaments",
+                        principalColumn: "TournamentID",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -271,11 +311,26 @@ namespace FHM.Migrations
                 column: "PlayerId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_PlayerIDs_TournamentID",
+                table: "PlayerIDs",
+                column: "TournamentID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PlayerIDs_GameId_PlayerId",
                 table: "PlayerIDs",
                 columns: new[] { "GameId", "PlayerId" },
                 unique: true,
                 filter: "[PlayerId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tournaments_FormatID",
+                table: "Tournaments",
+                column: "FormatID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tournaments_GameID",
+                table: "Tournaments",
+                column: "GameID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -296,19 +351,22 @@ namespace FHM.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Formats");
-
-            migrationBuilder.DropTable(
                 name: "PlayerIDs");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Game");
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "Tournaments");
+
+            migrationBuilder.DropTable(
+                name: "Formats");
+
+            migrationBuilder.DropTable(
+                name: "Game");
         }
     }
 }
