@@ -32,11 +32,6 @@
                 <span asp-validation-for="TournamentFee" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TournamentFee" class="control-label"></label>
-                <input asp-for="TournamentFee" class="form-control" />
-                <span asp-validation-for="TournamentFee" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 @Html.LabelFor(m => m.GameID)
                 @Html.DropDownListFor(m => m.GameID, new SelectList(Model.Games, "GameID", "GameName"))
                 @Html.ValidationMessageFor(m => m.GameID)
