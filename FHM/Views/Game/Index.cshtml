@@ -3,7 +3,11 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>@Model.Title</h2>
+<h2>
+@Model.Title
+@if (User.Identity.IsAuthenticated)
+{<a asp-area="" asp-controller="Game" asp-action="AddGame">|New Game</a>}
+</h2>
 
 @foreach (var game in Model.Games)
 {
@@ -21,4 +25,3 @@
         </div>
     </div>
 }
-</br>
