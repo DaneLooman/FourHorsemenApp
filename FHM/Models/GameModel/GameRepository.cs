@@ -34,10 +34,17 @@ namespace FHM.Models.GameModel
 
         public void DeleteGame (int gameID)
         {
+            var deletedTournaments = _appDbContext.Tournaments.Where(f => f.TournamentGame.GameID == gameID).ToList();
+
+            foreach (var t in deletedTournaments)
+            _appDbContext.Tournaments.Remove(t);
+            _appDbContext.SaveChanges();
+
             var deletedFormats = _appDbContext.Formats.Where(f => f.GameID == gameID).ToList();
 
             foreach (var format in deletedFormats)
-                _appDbContext.Formats.Remove(format);
+            _appDbContext.Formats.Remove(format);
+            _appDbContext.SaveChanges();
 
             var deletedGame = _appDbContext.Games.First(d => d.GameID == gameID);
             _appDbContext.Games.Remove(deletedGame);
