@@ -60,14 +60,26 @@ namespace FHM.Controllers
             if (ModelState.IsValid)
             {
                 _context.AddTournament(tournament);
-                return RedirectToAction("AddEventComplete");
+                return RedirectToAction("Details", tournament.TournamentID);
             }
             return View(tournament);
         }
 
-        public IActionResult AddEventComplete()
+        public IActionResult Details(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var thing = _context.GetTournamentByID(id);
+            if (thing == null)
+            {
+                return NotFound();
+            }
+
+            return View(thing);
+
         }
     }
 }

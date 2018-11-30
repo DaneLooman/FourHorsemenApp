@@ -1,0 +1,62 @@
+﻿@model Tournament
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Event Details</h2>
+<strong>Event Name:</strong> @Model.TournamentName<br />
+<strong>Game:</strong> @Model.TournamentGame.GameName<br />
+<strong>Format:</strong> @Model.TournamentFormat.FormatName<br />
+<strong>Entry Fee:</strong> $@Model.TournamentFee<br />
+<strong>Start Time:</strong> @Model.TournamentStartTime<br />
+<strong>Registered Players:</strong> @Model.PlayerIDs.Count()<br />
+<strong>Description:</strong> @Model.TournamentDescription<br />
+
+@if (User.Identity.IsAuthenticated)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    First Name
+                </th>
+                <th>
+                   Last Name
+                </th>
+                <th>
+                    Game ID
+                </th>
+                <th>
+                    Paid
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.PlayerIDs)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Player.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Player.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PlayerGameID)
+                    </td>
+                    <td>
+                        Paid Checkbox Boolean Goes Here
+                    </td>
+                    <td>
+                        <a asp-action="DropPlayer" asp-route-id="@item.PlayerIDID" asp-route-event="@Model.TournamentID">Delete</a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+}
+
+

@@ -19,6 +19,9 @@ namespace FHM.Models.TournamentModels
         }
         public void AddTournament(Tournament tournament)
         {
+
+            tournament.TournamentFormat = _appDbContext.Formats.FirstOrDefault(d => d.FormatID == tournament.FormatID);
+
             _appDbContext.Tournaments.Add(tournament);
             _appDbContext.SaveChanges();
         }
@@ -59,6 +62,7 @@ namespace FHM.Models.TournamentModels
            .Include(f => f.PlayerIDs)
            .ThenInclude(PlayerIDs => PlayerIDs.Player)
            .Include(f => f.TournamentGame)
+           .Include(f => f.TournamentFormat)
            .FirstOrDefault(f => f.TournamentID == tournamentID);
         }
     }
