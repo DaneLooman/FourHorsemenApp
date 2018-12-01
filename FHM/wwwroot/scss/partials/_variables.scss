@@ -1,0 +1,105 @@
+// Primary Color Pallete
+
+$primary: #002855;
+$secondary: #eaaa00;
+
+
+// Max Page Widths
+
+$max-page-width-large: 960px;
+$max-page-width-xxxlarge: 1440px;
+
+
+// Breakpoints
+$bp-tiny: 320px;
+$bp-mini: 420px;
+$bp-xxxsmall: 480px;
+$bp-xxsmall: 510px;
+$bp-xsmall: 608px;
+$bp-small: 720px;
+$bp-medium: 768px;
+$bp-regular: 900px;
+$bp-large: 960px;
+$bp-xlarge: 1024px;
+$bp-xxlarge: 1280px;
+$bp-xxxlarge: 1440px;
+$bp-xxxxlarge: 1560px;
+$bp-cinema:2000px;
+
+@mixin bp-tiny {
+ @media (min-width: #{$bp-tiny}) {
+    @content;
+  }
+}
+@mixin bp-mini {
+  @media (min-width: #{$bp-mini}) {
+    @content;
+  }
+}
+@mixin bp-xxxsmall {
+ @media (min-width: #{$bp-xxxsmall}) {
+    @content;
+  }
+} 
+@mixin bp-xxsmall {
+ @media (min-width: #{$bp-xxsmall}) {
+    @content;
+  }
+}
+@mixin bp-xsmall {
+ @media (min-width: #{$bp-xsmall}) {
+    @content;
+  }
+}
+@mixin bp-small {
+  @media (min-width: #{$bp-small}) {
+    @content;
+  }
+}
+@mixin bp-medium {
+ @media (min-width: #{$bp-medium}) {
+    @content;
+  }
+}
+@mixin bp-regular {
+  @media (min-width: #{$bp-regular}) {
+    @content;
+  }
+}
+@mixin bp-large {
+ @media (min-width: #{$bp-large}) {
+    @content;
+  }
+}
+@mixin bp-xlarge {
+  @media (min-width: #{$bp-xlarge}) {
+    @content;
+  }
+}
+@mixin bp-xxlarge {
+  @media (min-width: #{$bp-xxlarge}) {
+    @content;
+  }
+}
+@mixin bp-xxxlarge {
+  @media (min-width: #{$bp-xxxlarge}) {
+    @content;
+  }
+}
+@mixin bp-xxxxlarge {
+  @media (min-width: #{$bp-xxxxlarge}) {
+    @content;
+  }
+}
+@mixin bp-cinema {
+  @media (min-width: #{$bp-cinema}) {
+    @content;
+  }
+}
+@mixin bp-retina {
+  @media 
+    (-webkit-min-device-pixel-ratio: 2), 
+    (min-resolution: 192dpi) { 
+      @content;
+  }
+}

@@ -1,7 +1,28 @@
+section{
+  float:left;
+  height:auto;
+  padding:20px 0px;
+  width:100%;
+  }
 .container{
-	width:100%;
-	}
-body{
-	margin:0;
-	background-color: blue !important;
-	}
+  margin:0 auto;
+  width:100%;
+  padding:0px 5%;
+  @include bp-large{
+    max-width:$max-page-width-large;
+    padding: 0px 10%;
+    }
+  @include bp-xlarge{
+    padding:0px;
+    }
+  @include bp-xxlarge{
+    padding:0px;
+    }
+  @include bp-xxxlarge{  
+    max-width:$max-page-width-xxxlarge;
+    padding:0px 5%;
+    }
+  @include bp-xxxxlarge{
+    padding:0px;
+    }
+  }
