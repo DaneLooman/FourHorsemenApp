@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
+using FHM.Models.TournamentModels;
+using FHM.Models.LinkTables;
 
 namespace FHM.Models.PlayerIDModel
 {
@@ -21,5 +23,6 @@ namespace FHM.Models.PlayerIDModel
         //user info
         public string PlayerId { get; set; }
         public ApplicationUser Player { get; set; }
+        public ICollection<PlayerID_Tournament> Tournaments { get; } = new List<PlayerID_Tournament>();
     }
 }

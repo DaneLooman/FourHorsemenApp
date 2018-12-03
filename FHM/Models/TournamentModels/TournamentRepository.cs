@@ -59,8 +59,8 @@ namespace FHM.Models.TournamentModels
         public Tournament GetTournamentByID(int? tournamentID)
         {
            return _appDbContext.Tournaments
-           .Include(f => f.PlayerIDs)
-           .ThenInclude(PlayerIDs => PlayerIDs.Player)
+           .Include(f => f.PlayerIDIDs)
+           .ThenInclude(PlayerIDIDs => PlayerIDIDs.Player)
            .Include(f => f.TournamentGame)
            .Include(f => f.TournamentFormat)
            .FirstOrDefault(f => f.TournamentID == tournamentID);

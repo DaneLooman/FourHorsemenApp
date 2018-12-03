@@ -1,5 +1,6 @@
 ﻿using FHM.Models.FormatModels;
 using FHM.Models.GameModel;
+using FHM.Models.LinkTables;
 using FHM.Models.PlayerIDModel;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,7 @@ namespace FHM.Models.TournamentModels
         public Game TournamentGame { get; set; }
         public int? FormatID { get; set; }
         public Format TournamentFormat { get; set; }
-        public ICollection<PlayerID> PlayerIDs { get; set; }
+        public ICollection<PlayerID_Tournament> PlayerIDIDs { get; } = new List<PlayerID_Tournament>();
+
     }
 }

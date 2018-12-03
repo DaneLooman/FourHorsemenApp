@@ -9,6 +9,7 @@ using FHM.Models.GameModel;
 using FHM.Models.FormatModels;
 using FHM.Models.PlayerIDModel;
 using FHM.Models.TournamentModels;
+using FHM.Models.LinkTables;
 
 namespace FHM.Data
 {
@@ -35,8 +36,10 @@ namespace FHM.Data
                 e.HasIndex(prp => new { prp.GameId, prp.PlayerId }).IsUnique();
                 e.HasOne(prp => prp.Game).WithMany(prp => prp.PlayerIDs).HasForeignKey(prp => prp.GameId);
                 e.HasOne(prp => prp.Player).WithMany(prp => prp.PlayerIDs).HasForeignKey(prp => prp.PlayerId);
-            }
-            );
+            });
+            builder.Entity<PlayerID_Tournament>()
+                .HasKey(t => new { t.PlayerIDID, t.TournamentID });
+            
 
 
         }

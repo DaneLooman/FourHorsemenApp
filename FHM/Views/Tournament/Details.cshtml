@@ -9,7 +9,7 @@
 <strong>Format:</strong> @Model.TournamentFormat.FormatName<br />
 <strong>Entry Fee:</strong> $@Model.TournamentFee<br />
 <strong>Start Time:</strong> @Model.TournamentStartTime<br />
-<strong>Registered Players:</strong> @Model.PlayerIDs.Count()<br />
+<strong>Registered Players:</strong> @Model.PlayerIDIDs.Count()<br />
 <strong>Description:</strong> @Model.TournamentDescription<br />
 
 @if (User.Identity.IsAuthenticated)
@@ -32,17 +32,17 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.PlayerIDs)
+            @foreach (var item in Model.PlayerIDIDs)
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Player.FirstName)
+                        @Html.DisplayFor(modelItem => item.Player.Player.FirstName)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Player.LastName)
+                        @Html.DisplayFor(modelItem => item.Player.Player.LastName)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.PlayerGameID)
+                        @Html.DisplayFor(modelItem => item.Player.PlayerGameID)
                     </td>
                     <td>
                         Paid Checkbox Boolean Goes Here
