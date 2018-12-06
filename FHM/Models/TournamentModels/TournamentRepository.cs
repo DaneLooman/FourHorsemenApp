@@ -53,7 +53,12 @@ namespace FHM.Models.TournamentModels
 
         public IEnumerable<Tournament> GetAllTournaments()
         {
-            return _appDbContext.Tournaments.Include(f => f.TournamentFormat).ToList();
+            return _appDbContext.Tournaments
+           .Include(f => f.PlayerIDIDs)
+           .ThenInclude(PlayerIDIDs => PlayerIDIDs.Player)
+           .ThenInclude(Player=> Player.Player)
+           .Include(f => f.TournamentGame)
+           .Include(f => f.TournamentFormat).ToList();
         }
 
         public Tournament GetTournamentByID(int? tournamentID)
@@ -61,6 +66,7 @@ namespace FHM.Models.TournamentModels
            return _appDbContext.Tournaments
            .Include(f => f.PlayerIDIDs)
            .ThenInclude(PlayerIDIDs => PlayerIDIDs.Player)
+           .ThenInclude(Player => Player.Player)
            .Include(f => f.TournamentGame)
            .Include(f => f.TournamentFormat)
            .FirstOrDefault(f => f.TournamentID == tournamentID);
