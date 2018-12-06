@@ -3,53 +3,56 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Upcoming Events</h2>
+<h2>
+    Upcoming Events @if (User.Identity.IsAuthenticated)
+    {<a asp-action="Create">| Create</a>}
+</h2>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Game
-            </th>
-            <th>
-                Event Name
-            </th>
-            <th>
-                Format
-            </th>
-            <th>
-                Start Time
-            </th>
-            <th>
-                Entry Fee
-            </th>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Game
+                </th>
+                <th>
+                    Event Name
+                </th>
+                <th>
+                    Format
+                </th>
+                <th>
+                    Start Time
+                </th>
+                <th>
+                    Entry Fee
+                </th>
 
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Tournaments)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TournamentGame.GameName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TournamentName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TournamentFormat.FormatName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TournamentStartTime)
-            </td>
-            <td>
-                $@Html.DisplayFor(modelItem => item.TournamentFee)
-            </td>
-            <td>
-                <a asp-action="Details" asp-route-id="@item.TournamentID">View/Register</a>
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
-</br>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Tournaments)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TournamentGame.GameName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TournamentName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TournamentFormat.FormatName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TournamentStartTime)
+                    </td>
+                    <td>
+                        $@Html.DisplayFor(modelItem => item.TournamentFee)
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.TournamentID">View/Register</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </br>
