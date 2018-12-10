@@ -15,18 +15,20 @@ namespace FHM.Controllers
     {
         private readonly ITournamentRepository _context;
         private readonly IFormatRepository _formatContext;
-        public TournamentController(ITournamentRepository appDbContext, IFormatRepository formatContext)
+        private readonly UserManager<ApplicationUser> _userManager;
+        public TournamentController(ITournamentRepository appDbContext, IFormatRepository formatContext,
+           UserManager<ApplicationUser> userManager)
         {
             _context = appDbContext;
             _formatContext = formatContext;
+            _userManager = userManager;
         }
-
         //private readonly UserManager<ApplicationUser> _userManager;
 
 
         public async Task<IActionResult> Index()
         {
-            //var user = await _userManager.GetUserAsync(User);
+            var user = await _userManager.GetUserAsync(User);
 
             var tournamentViewModel = new TournamentViewModel()
             {
@@ -35,7 +37,15 @@ namespace FHM.Controllers
                 Tournaments = _context.GetAllTournaments().ToList()
             };
 
-            return View(tournamentViewModel);
+            if (user is null)
+            {
+                return View(tournamentViewModel);
+            }
+            else
+            {
+                tournamentViewModel.PlayerTournaments = _context.GetAllTournaments(user.Id).ToList();
+                return View(tournamentViewModel);
+            }   
         }
 
         // GET: Formats/Create
