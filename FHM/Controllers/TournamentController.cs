@@ -23,8 +23,6 @@ namespace FHM.Controllers
             _formatContext = formatContext;
             _userManager = userManager;
         }
-        //private readonly UserManager<ApplicationUser> _userManager;
-
 
         public async Task<IActionResult> Index()
         {
