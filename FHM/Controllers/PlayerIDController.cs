@@ -29,31 +29,17 @@ namespace FHM.Controllers
             return View(playerIDs);
         }
 
-        public IActionResult Details(int? id)
+        public async Task<IActionResult> Create()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var playerID = _context.GetPlayerIDByID(id);
-            if (playerID == null)
-            {
-                return NotFound();
-            }
-
-            return View(playerID);
-        }
-        public IActionResult Create()
-        {
+            var user = await _userManager.GetUserAsync(User);
             var games = _context.GetAllGames();
             var players = _context.GetAllPlayers();
 
             var viewModel = new PlayerIdViewModel
             {
                 Games = games,
-                Players = players
-
+                Players = players,
+                UserID = user.Id
             };
             return View(viewModel);
         }
