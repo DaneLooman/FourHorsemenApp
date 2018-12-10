@@ -2,50 +2,17 @@
 @{
     ViewData["Title"] = "Index";
 }
+<h2>My Game IDs </h2>
+<h3><a asp-action="Create">Add A New Player ID</a></h3>
 
-<h2>Index</h2>
-@if (User.Identity.IsAuthenticated)
+@foreach (var item in Model)
 {
-    <p>
-        <a asp-action="Create">Create New</a>
-    </p>
+    <div class="col-sm-4 col-lg-4 col-md-4">
+        <div class="thumbnail">
+            <img src="@item.Game.GameImageThumbnailURL" alt="@item.Game.GameName">
+            @Html.DisplayFor(modelItem => item.PlayerGameID)
+            <a asp-action="Edit" asp-route-id="@item.PlayerIDID">Edit</a>
+            <a asp-action="Delete" asp-route-id="@item.PlayerIDID">Delete</a>
+        </div>
+    </div>
 }
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                User
-            </th>
-            <th>
-                Game
-            </th>
-            <th>
-                PlayerID
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Player.UserName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Game.GameName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PlayerGameID)
-                </td>
-                @if (User.Identity.IsAuthenticated)
-                {
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.PlayerIDID">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.PlayerIDID">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.PlayerIDID">Delete</a>
-                    </td>
-                }
-            </tr>
-        }
-    </tbody>
-</table>

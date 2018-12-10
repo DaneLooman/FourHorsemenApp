@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FHM.Models;
 using FHM.Models.PlayerIDModel;
 using FHM.Models.PlayerIdViewModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FHM.Controllers
@@ -11,15 +13,19 @@ namespace FHM.Controllers
     public class PlayerIDController : Controller
     {
         private readonly IPlayerIDRepository _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public PlayerIDController(IPlayerIDRepository context)
+        public PlayerIDController(IPlayerIDRepository context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var playerIDs = _context.GetAllPlayerIDs();
+            var user = await _userManager.GetUserAsync(User);
+
+            var playerIDs = _context.GetAllPlayerIDsByPlayer(user.Id);
             return View(playerIDs);
         }
 

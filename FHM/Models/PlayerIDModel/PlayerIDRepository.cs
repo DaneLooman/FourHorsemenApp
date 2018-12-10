@@ -72,7 +72,9 @@ namespace FHM.Models.PlayerIDModel
 
         public IEnumerable<PlayerID> GetAllPlayerIDsByPlayer(string userID)
         {
-            return _context.PlayerIDs.Where(f => f.Player.Id == userID).ToList();
+            return _context.PlayerIDs
+                .Include(p => p.Game)
+                .Where(f => f.Player.Id == userID).ToList();
         }
 
         public IEnumerable<ApplicationUser> GetAllPlayers()
