@@ -15,27 +15,24 @@ namespace FHM.Controllers
     {
         private readonly ITournamentRepository _context;
         private readonly IFormatRepository _formatContext;
-        private readonly UserManager<ApplicationUser> _userManager;
-        public TournamentController(ITournamentRepository appDbContext, IFormatRepository formatContext,
-           UserManager<ApplicationUser> userManager )
+        public TournamentController(ITournamentRepository appDbContext, IFormatRepository formatContext)
         {
             _context = appDbContext;
             _formatContext = formatContext;
-            _userManager = userManager;
         }
 
- 
+        //private readonly UserManager<ApplicationUser> _userManager;
+
 
         public async Task<IActionResult> Index()
         {
-            var user = await _userManager.GetUserAsync(User);
+            //var user = await _userManager.GetUserAsync(User);
 
             var tournamentViewModel = new TournamentViewModel()
             {
                 Title = "Tournaments",
                 Games = _context.GetAllGames().ToList(),
-                Tournaments = _context.GetAllTournaments().ToList(),
-                PlayerTournaments = _context.GetAllTournaments(user.Id).ToList()
+                Tournaments = _context.GetAllTournaments().ToList()
             };
 
             return View(tournamentViewModel);
