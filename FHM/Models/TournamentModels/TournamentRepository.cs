@@ -61,6 +61,18 @@ namespace FHM.Models.TournamentModels
            .Include(f => f.TournamentFormat).ToList();
         }
 
+        public IEnumerable<Tournament> GetAllTournaments(string id)
+        {
+            return _appDbContext.Tournaments
+           .Include(f => f.PlayerIDIDs)
+           .ThenInclude(PlayerIDIDs => PlayerIDIDs.Player)
+           .ThenInclude(Player => Player.Player)
+           .Include(f => f.TournamentGame)
+           .Include(f => f.TournamentFormat)
+           .ToList()
+           .Where(f => f.PlayerIDIDs.Any(pid => pid.Player.Player.Id == id));    
+        }
+
         public Tournament GetTournamentByID(int? tournamentID)
         {
            return _appDbContext.Tournaments

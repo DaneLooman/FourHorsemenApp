@@ -16,6 +16,7 @@ namespace FHM.Models.TournamentViewModels
         }
         public string Title { get; set; }
         public List<Tournament> Tournaments { get; set; }
+        public List<Tournament> PlayerTournaments { get; set; }
         public List<Game> Games { get; set; }
         public List<Format> Formats { get; set; }
 

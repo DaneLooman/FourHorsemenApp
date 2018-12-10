@@ -10,6 +10,7 @@ namespace FHM.Models.TournamentModels
     public interface ITournamentRepository
     {
         IEnumerable<Tournament> GetAllTournaments();
+        IEnumerable<Tournament> GetAllTournaments(string id);
         Tournament GetTournamentByID(int? tournamentID);
 
         void AddTournament(Tournament tournament);
