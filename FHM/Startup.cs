@@ -44,6 +44,7 @@ namespace FHM
             services.AddTransient<IFormatRepository, FormatRepository>();
             services.AddTransient<IPlayerIDRepository, PlayerIDRepository>();
             services.AddTransient<ITournamentRepository, TournamentRepository>();
+            services.AddTransient<IPlayerRepository, PlayerRepository>();
             services.AddMvc();
         }
 

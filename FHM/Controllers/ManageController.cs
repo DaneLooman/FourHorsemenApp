@@ -25,6 +25,7 @@ namespace FHM.Controllers
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
         private readonly UrlEncoder _urlEncoder;
+        private readonly IPlayerRepository _playerRepo;
 
         private const string AuthenticatorUriFormat = "otpauth://totp/{0}:{1}?secret={2}&issuer={0}&digits=6";
         private const string RecoveryCodesKey = nameof(RecoveryCodesKey);
@@ -34,14 +35,17 @@ namespace FHM.Controllers
           SignInManager<ApplicationUser> signInManager,
           IEmailSender emailSender,
           ILogger<ManageController> logger,
-          UrlEncoder urlEncoder)
+          UrlEncoder urlEncoder, 
+          IPlayerRepository playeRepo)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
             _urlEncoder = urlEncoder;
+            _playerRepo = playeRepo;
         }
+        
 
         [TempData]
         public string StatusMessage { get; set; }
@@ -61,7 +65,9 @@ namespace FHM.Controllers
                 Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
                 IsEmailConfirmed = user.EmailConfirmed,
-                StatusMessage = StatusMessage
+                StatusMessage = StatusMessage,
+                FirstName = user.FirstName,
+                LastName = user.LastName
             };
 
             return View(model);
@@ -100,6 +106,18 @@ namespace FHM.Controllers
                 {
                     throw new ApplicationException($"Unexpected error occurred setting phone number for user with ID '{user.Id}'.");
                 }
+            }
+
+            var firstName = user.FirstName;
+            if (model.FirstName != firstName)
+            {
+                _playerRepo.UpdatePlayerFirstName(user, model.FirstName);
+            }
+
+            var lastName = user.LastName;
+            if (model.LastName != lastName)
+            {
+                _playerRepo.UpdatePlayerLastName(user, model.LastName);
             }
 
             StatusMessage = "Your profile has been updated";

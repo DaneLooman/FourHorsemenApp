@@ -45,7 +45,7 @@
                         @Html.DisplayFor(modelItem => item.Player.PlayerGameID)
                     </td>
                     <td>
-                        Paid Checkbox Boolean Goes Here
+                        <div class="checkbox">@Html.DisplayFor(modelItem => item.Paid)</div>
                     </td>
                     <td>
                         <a asp-action="DropPlayer" asp-route-id="@item.PlayerIDID" asp-route-event="@Model.TournamentID">Delete</a>
