@@ -11,9 +11,10 @@ using System;
 namespace FHM.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181217180901_AddedBoolPaidToPlayer_Tournament")]
+    partial class AddedBoolPaidToPlayer_Tournament
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -13,5 +13,6 @@ namespace FHM.Models.LinkTables
         public PlayerID Player { get; set; }
         public int TournamentID { get; set; }
         public Tournament Tournament { get; set; }
+        public bool Paid { get; set; }
     }
 }
