@@ -236,11 +236,18 @@ namespace FHM.Controllers
                     _logger.LogInformation("User created a new account with password.");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
-                    await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
+                    var callbackUrl = Url.Action(nameof(ConfirmEmail), "Account",
+                    new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
+                    await _emailSender.SendEmailAsync(model.Email, "Confirm your account",
+                       $"Please confirm your account by clicking this link: <a href='{callbackUrl}'>link</a>");
 
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    _logger.LogInformation("User created a new account with password.");
+                    TempData["Message"] = "Confirmation Email has been send to your email. Please check email.";
+                    TempData["MessageValue"] = "1";
+
+                    //SignInManager to sign in user.   
+                    // await _signInManager.SignInAsync(user, isPersistent: false);
+
+                    // _logger.LogInformation(3, "User created a new account with password.");
                     return RedirectToLocal(returnUrl);
                 }
                 AddErrors(result);
