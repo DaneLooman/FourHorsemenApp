@@ -16,7 +16,7 @@ namespace FHM.Data
         {
             context.Database.EnsureCreated();
 
-            if (userManager.FindByNameAsync("DaneLooman").Result == null)
+            if (userManager.FindByNameAsync("looman.dane@gmail.com").Result == null)
             {
                 ApplicationUser user = new ApplicationUser();
                 user.UserName = "looman.dane@gmail.com";
