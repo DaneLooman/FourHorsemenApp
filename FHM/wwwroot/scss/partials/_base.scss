@@ -1,0 +1,342 @@
+// First and last elements
+.first-element-horizontal{
+  margin-left:0px !important;
+  padding-left:0px !important;
+  }
+.last-element-horizontal{
+  margin-right:0px !important;
+  padding-right:0px !important;
+  @include bp-xxxlarge{
+    margin-right:0px !important;
+    }
+  }
+
+
+#float-left{
+  float:left;
+  }
+
+// button style
+a.button{
+  text-align: center;
+  width: auto !important;
+  float: left;
+  clear:right;
+  padding: 10px 20px;
+  border-radius: 3px;
+  text-decoration: none;
+  color: $button-color;
+  border: solid 2px $button-color;
+  margin: 20px auto;
+  -webkit-transition: background-color 200ms ease-out .1s, color 200ms ease-out .1s;
+  -moz-transition: background-color 200ms ease-out .1s, color 200ms ease-out .1s;
+  -o-transition: background-color 200ms ease-out .1s, color 200ms ease-out .1s;
+  transition: background-color 200ms ease-out .1s, color 200ms ease-out .1s;
+  &:visited{
+    color:$button-color;
+    }
+  &:hover{
+    background-color:$button-color;
+    color:white; 
+    text-decoration:none;
+    }
+  }
+a.button-solid-blue{
+  text-align: center;
+  width: auto !important;
+  float: left;
+  clear:right;
+  padding: 10px 20px;
+  border-radius: 3px;
+  text-decoration: none;
+  background-color:$button-color;
+  color: white;
+  border: solid 2px $button-color;
+  margin: 20px 5%;
+  -webkit-transition: background-color 200ms ease-out .1s, color 200ms ease-out .1s;
+  -moz-transition: background-color 200ms ease-out .1s, color 200ms ease-out .1s;
+  -o-transition: background-color 200ms ease-out .1s, color 200ms ease-out .1s;
+  transition: background-color 200ms ease-out .1s, color 200ms ease-out .1s;
+  &:visited{
+    color:white;
+    }
+  &:hover{
+    background-color:white;
+    color:$button-color; 
+    text-decoration:none;
+    }
+  @include bp-small{
+    margin: 20px 10%;
+    }
+  @include bp-large{
+    margin: 20px auto;
+    }
+  }
+a.button-white{
+  text-align: center;
+  width: auto !important;
+  float: left;
+  clear:right;
+  padding: 10px 20px;
+  background-color: rgba(0,0,0,.4);
+  border-radius: 3px;
+  text-decoration: none;
+  color: white;
+  border: solid 2px white;
+  margin: 20px auto;
+  -webkit-transition: background-color 200ms ease-out .1s, color 200ms ease-out .1s;
+  -moz-transition: background-color 200ms ease-out .1s, color 200ms ease-out .1s;
+  -o-transition: background-color 200ms ease-out .1s, color 200ms ease-out .1s;
+  transition: background-color 200ms ease-out .1s, color 200ms ease-out .1s;
+  &:visited{
+    color:white;
+    }
+  &:hover{
+    background-color:$primary;
+    color:white; 
+    text-decoration:none;
+    }
+  }
+a.button-reverse{
+  text-align: center;
+  width: auto !important;
+  float: left;
+  clear:right;
+  padding: 10px 20px;
+  border-radius: 3px;
+  text-decoration: none;
+  color: $button-color-reverse;
+  border: solid 2px $button-color-reverse;
+  margin: 20px auto;
+  -webkit-transition: background-color 200ms ease-out .1s, color 200ms ease-out .1s;
+  -moz-transition: background-color 200ms ease-out .1s, color 200ms ease-out .1s;
+  -o-transition: background-color 200ms ease-out .1s, color 200ms ease-out .1s;
+  transition: background-color 200ms ease-out .1s, color 200ms ease-out .1s;
+  &:visited{
+    color:$button-color-reverse;
+    }
+  &:hover{
+    background-color:$button-color-reverse;
+    color:$button-color; 
+    text-decoration:none;
+    }
+  }
+a.button-white-fill{
+  text-align: center;
+  width: auto !important;
+  float: left;
+  clear:right;
+  padding: 10px 20px;
+  border-radius: 3px;
+  text-decoration: none;
+  background-color: white;
+  color: $primary;
+  font-weight:600;
+  border: solid 2px white;
+  margin: 20px auto;
+  -webkit-transition: background-color 200ms ease-out .1s, color 200ms ease-out .1s;
+  -moz-transition: background-color 200ms ease-out .1s, color 200ms ease-out .1s;
+  -o-transition: background-color 200ms ease-out .1s, color 200ms ease-out .1s;
+  transition: background-color 200ms ease-out .1s, color 200ms ease-out .1s;
+  &:visited{
+    color:$primary;
+    }
+  &:hover{
+    background-color:$primary;
+    color:white; 
+    text-decoration:none;
+    }
+  }
+a.button-gold{
+  text-align: center;
+  width: auto !important;
+  float: left;
+  clear:right;
+  padding: 10px 20px;
+  border-radius: 3px;
+  text-decoration: none;
+  background-color: rgba(0,0,0,0);
+  color: $secondary;
+  font-weight:600;
+  border: solid 2px $secondary;
+  margin: 20px auto;
+  -webkit-transition: background-color 200ms ease-out .1s, color 200ms ease-out .1s;
+  -moz-transition: background-color 200ms ease-out .1s, color 200ms ease-out .1s;
+  -o-transition: background-color 200ms ease-out .1s, color 200ms ease-out .1s;
+  transition: background-color 200ms ease-out .1s, color 200ms ease-out .1s;
+  &:visited{
+    color:$secondary;
+    }
+  &:hover{
+    background-color:$secondary;
+    color:$primary; 
+    text-decoration:none;
+    }
+  }
+
+blockquote{
+  width: 100%;
+  margin: 0px;
+  padding: 0px 20px;
+  border-left: none;
+  font-style: italic;
+  font-weight: 300;
+  font-size: .9em;
+  }
+
+
+// editor style
+#_ckey_article-body{
+  width:100%;
+  }
+#_ckey_sidebar-1{
+  float:left;
+  width: 100%;
+  }
+#_ckey_Header-Statement{
+  float: left;
+  height: auto;
+  width: 1260px !important;
+  }
+#_ckey_Header-Image{
+  height: 400px;
+  margin: 0px auto;
+  width: 100%;
+  border: solid 1px blue;
+  }
+
+
+// mobile styles
+.mobile-hide{
+  display:none;
+  @include bp-large{
+    display:block;
+    } 
+  }
+.mobile-show{
+  @include bp-large{
+    display:none;
+    } 
+  }
+
+
+// blog pagination
+.wvu-pagination__disabled{
+  display:none;
+  }
+.blog__intro{
+  display:none;
+  }
+.blog__intro-enabled{
+  display: block;
+  }
+
+.no-padding{
+  padding:0px !important;
+  }
+
+
+
+.dark-grey-yellow{
+  background-color:$grey-dark;
+  a,h1,h2,h3,h4,h5,h6,p{
+    color:$secondary;
+    &:visited{
+      color:$secondary;
+      }
+    }
+  }
+
+
+.bg_primary{
+  background-color:$primary;
+  }
+.warm-grey-background{
+  background-color:$warm-grey;
+  }
+.grey-background{
+  background-color:#e0e0e0;
+  }
+.dark-grey-background{
+  background-color:$grey-dark;
+  a,h1,h2,h3,h4,h5,h6,p{
+    color:white;
+    &:visited{
+      color:white;
+      }
+    }
+  } 
+.primary-background, .bg_blue{
+  background-color:#002855;
+  a,h1,h2,h3,h4,h5,h6,p{
+    color:white;
+    &:visited{
+      color:white;
+      }
+    }
+  } 
+.secondary-background, .bg_gold{
+  background-color:$secondary;
+  a,h1,h2,h3,h4,h5,h6,p{
+    color:$grey-dark;
+    &:visited{
+      color:$grey-dark;
+      }
+    }
+  } 
+.page{
+  min-width:20px;
+  }
+
+
+// column system
+
+.two_columns{
+  width:100%;
+  float:left;
+  height:auto;
+  @include bp-medium{
+    width:46%;
+    margin-left:2%;
+    margin-right:2%;
+    }
+  }
+.three_columns, .triptych__text{
+  width:100%;
+  float:left;
+  height:auto;
+  @include bp-medium{
+    float:left;
+    width:30%;
+    height:auto;
+    margin-right:5%;
+    }
+  }
+.four_columns{
+  width:100%;
+  float:left;
+  height:auto;
+  @include bp-medium{
+    width:22%;
+    margin-left:2%;
+    margin-right:2%;
+    }
+  }
+
+.first{
+  margin-left:0px !important;
+  }
+.last{
+  margin-right:0px !important;
+  float:right !important; 
+  }
+.mobile{
+  display: block;
+  @include bp-large{
+    display:none;
+    }
+  }
+
+.intro_show{
+  display:none;
+  }
