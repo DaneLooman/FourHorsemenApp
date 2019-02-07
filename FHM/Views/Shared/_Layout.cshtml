@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
         <link rel="stylesheet" href="~/css/styles.css" />
+        <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Roboto+Slab" rel="stylesheet">
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -48,13 +49,15 @@
             </div>
         </div>
     </nav>
-    <div>
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2018 - Four Horsemen Comics and Gaming</p>
-        </footer>
-    </div>
+
+    @RenderBody()
+
+    <footer>
+      <div class="container"
+        <p>&copy; 2018 - Four Horsemen Comics and Gaming</p>
+      </div>
+    </footer>
+
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
