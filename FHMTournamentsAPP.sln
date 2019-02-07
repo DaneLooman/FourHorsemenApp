@@ -3,9 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FHM", "FHM\FHM.csproj", "{F92B2310-5A3E-4A21-BEB9-F9DAD53C8B2A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FHM", "FHM\FHM.csproj", "{F92B2310-5A3E-4A21-BEB9-F9DAD53C8B2A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelApp", "ModelApp\ModelApp.csproj", "{9B97459C-1030-49DF-BAEF-309E456BB0C5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{69CE0A15-BBED-4749-8646-DB42114441AD}"
+	ProjectSection(SolutionItems) = preProject
+		FHMTournamentsAPP.sln = FHMTournamentsAPP.sln
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
