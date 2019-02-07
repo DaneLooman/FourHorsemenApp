@@ -34,7 +34,7 @@ namespace FHM
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            services.AddIdentity<ApplicationUser, AppRole>(options =>
             {
                 // Signin settings
                 options.SignIn.RequireConfirmedEmail = true;

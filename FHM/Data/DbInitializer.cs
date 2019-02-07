@@ -12,9 +12,35 @@ namespace FHM.Data
 {
     public static class DbInitializer
     {
-        public static void Initialize(ApplicationDbContext context,UserManager<ApplicationUser> userManager)
+        public static void Initialize(ApplicationDbContext context,
+            UserManager<ApplicationUser> userManager)
         {
             context.Database.EnsureCreated();
+
+            //if (!roleManager.RoleExistsAsync("Customer").Result)
+            //{
+            //    AppRole role = new AppRole();
+            //    role.Name = "Customer";
+            //    IdentityResult roleResult = roleManager.CreateAsync(role).Result;
+            //}
+            //if (!roleManager.RoleExistsAsync("Organizer").Result)
+            //{
+            //    AppRole role = new AppRole();
+            //    role.Name = "Organizer";
+            //    IdentityResult roleResult = roleManager.CreateAsync(role).Result;
+            //}
+            //if (!roleManager.RoleExistsAsync("Employee").Result)
+            //{
+            //    AppRole role = new AppRole();
+            //    role.Name = "Employee";
+            //    IdentityResult roleResult = roleManager.CreateAsync(role).Result;
+            //}
+            //if (!roleManager.RoleExistsAsync("Admin").Result)
+            //{
+            //    AppRole role = new AppRole();
+            //    role.Name = "Admin";
+            //    IdentityResult roleResult = roleManager.CreateAsync(role).Result;
+            //}
 
             if (userManager.FindByNameAsync("looman.dane@gmail.com").Result == null)
             {
@@ -27,6 +53,11 @@ namespace FHM.Data
                 user.EmailConfirmed = true;
 
                 IdentityResult result = userManager.CreateAsync(user, "Password1234!").Result;
+                //if (result.Succeeded)
+                //{
+                //    userManager.AddToRoleAsync(user,
+                //                        "Admin").Wait();
+                //}
             }
 
             if (!context.Games.Any())

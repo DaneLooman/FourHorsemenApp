@@ -11,8 +11,8 @@ using System;
 namespace FHM.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190206223700_SeedUser")]
-    partial class SeedUser
+    [Migration("20190207212300_initialMigration")]
+    partial class initialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

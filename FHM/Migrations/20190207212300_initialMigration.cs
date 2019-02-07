@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace FHM.Migrations
 {
-    public partial class updatingTournaments : Migration
+    public partial class initialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -197,6 +197,33 @@ namespace FHM.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "PlayerIDs",
+                columns: table => new
+                {
+                    PlayerIDID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    GameId = table.Column<int>(nullable: false),
+                    PlayerGameID = table.Column<string>(nullable: true),
+                    PlayerId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PlayerIDs", x => x.PlayerIDID);
+                    table.ForeignKey(
+                        name: "FK_PlayerIDs_Game_GameId",
+                        column: x => x.GameId,
+                        principalTable: "Game",
+                        principalColumn: "GameID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PlayerIDs_AspNetUsers_PlayerId",
+                        column: x => x.PlayerId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Tournaments",
                 columns: table => new
                 {
@@ -228,37 +255,28 @@ namespace FHM.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PlayerIDs",
+                name: "PlayerID_Tournament",
                 columns: table => new
                 {
-                    PlayerIDID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    GameId = table.Column<int>(nullable: false),
-                    PlayerGameID = table.Column<string>(nullable: true),
-                    PlayerId = table.Column<string>(nullable: true),
-                    TournamentID = table.Column<int>(nullable: true)
+                    PlayerIDID = table.Column<int>(nullable: false),
+                    TournamentID = table.Column<int>(nullable: false),
+                    Paid = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PlayerIDs", x => x.PlayerIDID);
+                    table.PrimaryKey("PK_PlayerID_Tournament", x => new { x.PlayerIDID, x.TournamentID });
                     table.ForeignKey(
-                        name: "FK_PlayerIDs_Game_GameId",
-                        column: x => x.GameId,
-                        principalTable: "Game",
-                        principalColumn: "GameID",
+                        name: "FK_PlayerID_Tournament_PlayerIDs_PlayerIDID",
+                        column: x => x.PlayerIDID,
+                        principalTable: "PlayerIDs",
+                        principalColumn: "PlayerIDID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_PlayerIDs_AspNetUsers_PlayerId",
-                        column: x => x.PlayerId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_PlayerIDs_Tournaments_TournamentID",
+                        name: "FK_PlayerID_Tournament_Tournaments_TournamentID",
                         column: x => x.TournamentID,
                         principalTable: "Tournaments",
                         principalColumn: "TournamentID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -306,14 +324,14 @@ namespace FHM.Migrations
                 column: "GameID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_PlayerID_Tournament_TournamentID",
+                table: "PlayerID_Tournament",
+                column: "TournamentID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PlayerIDs_PlayerId",
                 table: "PlayerIDs",
                 column: "PlayerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PlayerIDs_TournamentID",
-                table: "PlayerIDs",
-                column: "TournamentID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PlayerIDs_GameId_PlayerId",
@@ -351,16 +369,19 @@ namespace FHM.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "PlayerIDs");
+                name: "PlayerID_Tournament");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "PlayerIDs");
 
             migrationBuilder.DropTable(
                 name: "Tournaments");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "Formats");
