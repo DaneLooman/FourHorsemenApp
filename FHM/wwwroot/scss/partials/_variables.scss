@@ -3,12 +3,51 @@
 $primary: #002855;
 $secondary: #eaaa00;
 
+// PRIMARY
+$wvu-blue: #002855;
+$wvu-gold: #eaaa00;
+$blue-alternate: #0033a0;
+
+//  Secondary
+$gold-secondary-light: #ffe894;
+$blue-secondary-light: #a0c4da;
+$blue-secondary-middle: #005EB8;
+$orange-dark: #d9531e;
+$wvu-orange: #f47b20; // Gotta prefix wvu-* here to make TWBS buttons happy.
+$grey-middle: #5c6f7c;
+$wvu-black:#2c2A29; 
+$black-ninety-five:#1A1A1A ;
+$black-ninety:#5a5a5a;
+$black-eightyfive:#555555;
+// 100% Black: #000;
+
+// Tertiary
+$red: #bb471a;
+$grey-blue: #abc;
+$grey-dark: #333f48;
+$grey-light: #e0e0e0;
+$blue-vibrant: #39f;
+$blue-grey: #369;
+$purple-bright: #60c;
+$warm-grey:#968c83;
+
+$basecolor: #333;
+
+
+// Typography Families
+$alfa_slab_one: 'Alfa Slab One', cursive;
 
 // Max Page Widths
 
 $max-page-width-large: 960px;
 $max-page-width-xxxlarge: 1440px;
 
+// Double Abstraction
+$linkcolor: $primary;
+$linkhover: $secondary;
+$linkvisited: $primary;
+$button-color: $primary;
+$button-color-reverse: white;
 
 // Breakpoints
 $bp-tiny: 320px;

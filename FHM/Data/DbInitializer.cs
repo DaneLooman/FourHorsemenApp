@@ -1,6 +1,8 @@
-﻿using FHM.Models.FormatModels;
+﻿using FHM.Models;
+using FHM.Models.FormatModels;
 using FHM.Models.GameModel;
 using FHM.Models.TournamentModels;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +12,22 @@ namespace FHM.Data
 {
     public static class DbInitializer
     {
-        public static void Initialize(ApplicationDbContext context)
+        public static void Initialize(ApplicationDbContext context,UserManager<ApplicationUser> userManager)
         {
             context.Database.EnsureCreated();
+
+            if (userManager.FindByNameAsync("looman.dane@gmail.com").Result == null)
+            {
+                ApplicationUser user = new ApplicationUser();
+                user.UserName = "looman.dane@gmail.com";
+                user.Email = "looman.dane@gmail.com";
+                user.FirstName = "Dane";
+                user.LastName = "Looman";
+                user.Id = "User1";
+                user.EmailConfirmed = true;
+
+                IdentityResult result = userManager.CreateAsync(user, "Password1234!").Result;
+            }
 
             if (!context.Games.Any())
             {
