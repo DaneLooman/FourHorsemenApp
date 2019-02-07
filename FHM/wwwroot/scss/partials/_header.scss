@@ -1,0 +1,15 @@
+.header_logo{
+	float:left;
+	height: 50px;
+	width:auto;
+	}
+.navbar{
+	padding:20px 0px;
+	background-color: white;
+	color:$primary;
+	}
+.navbar-inverse .navbar-nav > li > a{
+	color:$primary;
+	font-size:1.3em;
+	}
+	

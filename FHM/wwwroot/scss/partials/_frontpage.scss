@@ -13,3 +13,59 @@
 			}
 		}
 	}
+.frontpage_video{
+	background-color:$primary;
+	h2,p{
+		color:white;
+		}
+	}
+.frontpage_video-container{
+	float: left;
+	}
+.frontpage_hero{
+	height:600px;
+	background-image: url(/images/4hm-hero.jpg);
+	background-repeat: no-repeat;
+    background-size: cover;
+	}
+.frontpage_hero-textbox{
+	position: absolute;
+	bottom:350px;
+	}
+.frontpage_hero-callout{
+	font-family: 'Alfa Slab One', cursive;
+	font-size:6em;
+	color:$primary;
+	}
+.frontpage_hero-statement{
+	font-size: 2em;
+	font-weight: 600;
+	color:$primary;
+	}	
+.frontpage_statement-container{
+	float:left;
+	width:100%;
+	}
+.frontpage_communities{
+	padding:50px 0px;
+	}
+.frontpage_communities-header{
+	color:$primary;
+	text-align: center;
+	padding-bottom:20px;
+	}
+ .frontpage_communities-cards{
+	img{
+		float: left;
+    	width: 100%;
+    	height: 200px;
+    	object-fit: cover;
+		}
+	ul{
+		float: left;
+    	width: 100%;
+    	margin-top: 20px;
+    	list-style: none;
+    	padding-left: 0px;
+		}
+	}
