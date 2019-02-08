@@ -21,6 +21,7 @@ namespace FHM.Data
         }
         //DbSets
         public DbSet<ApplicationUser> Players { get; set; }
+        public DbSet<AppRole> Roles { get; set; }
         public DbSet<Game> Games { get; set; }
         public DbSet<Format> Formats { get; set; }
         public DbSet<PlayerID> PlayerIDs { get; set; }

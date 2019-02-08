@@ -26,8 +26,10 @@ namespace FHM
                 try
                 {
                     var context = services.GetRequiredService<ApplicationDbContext>();
+                    var roleManager = services.GetRequiredService<RoleManager<AppRole>>();
                     var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
-                    DbInitializer.Initialize(context, userManager);
+
+                    DbInitializer.Initialize(context, roleManager, userManager);
 
                 }
                 catch (Exception ex)
