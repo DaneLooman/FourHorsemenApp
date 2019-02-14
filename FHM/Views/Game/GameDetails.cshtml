@@ -54,9 +54,9 @@
                     @if (User.Identity.IsAuthenticated)
                     {
                         <td>
-                            <a asp-action="Edit" asp-route-id="@item.FormatID">Edit</a> |
-                            <a asp-action="Details" asp-route-id="@item.FormatID">Details</a> |
-                            <a asp-action="Delete" asp-route-id="@item.FormatID">Delete</a>
+                            <a asp-controller="Formats"  asp-action="Edit" asp-route-id="@item.FormatID">Edit</a> |
+                            <a asp-controller="Formats" asp-action="Details" asp-route-id="@item.FormatID">Details</a> |
+                            <a asp-controller="Formats" asp-action="Delete" asp-route-id="@item.FormatID">Delete</a>
                         </td>
                     }
                 </tr>
