@@ -31,8 +31,15 @@ namespace FHM.Models.PlayerIDModel
         public void AddPlayerID(PlayerID playerID)
         {
             var count = _context.PlayerIDs.Where(p => p.GameId == playerID.GameId && p.PlayerId == playerID.PlayerId).Count();
+            PlayerID unclaimedID = _context.PlayerIDs.Where(p => p.GameId == playerID.GameId && p.PlayerId == null && p.PlayerGameID == playerID.PlayerGameID).FirstOrDefault();
 
-            if (count > 0)
+            if (unclaimedID != null)
+            {
+                unclaimedID.PlayerId = playerID.PlayerId;
+                _context.PlayerIDs.Update(unclaimedID);
+                _context.SaveChanges();
+            }
+            else if (count > 0)
             {
                 return;
             }
@@ -40,14 +47,15 @@ namespace FHM.Models.PlayerIDModel
             {
                 _context.PlayerIDs.Add(playerID);
                 _context.SaveChanges();
-          
             }
         }
 
         public void DeletePlayerID(int? playerIDID)
         {
-            var deletedPlayerID = _context.PlayerIDs.First(d => d.PlayerIDID == playerIDID);
-            _context.PlayerIDs.Remove(deletedPlayerID);
+            PlayerID deletedPlayerID = _context.PlayerIDs.First(d => d.PlayerIDID == playerIDID);
+            deletedPlayerID.PlayerId = null;
+            deletedPlayerID.Player = null;
+            _context.PlayerIDs.Update(deletedPlayerID);
             _context.SaveChanges();
         }
 
@@ -84,7 +92,7 @@ namespace FHM.Models.PlayerIDModel
 
         public PlayerID GetPlayerIDByID(int? playerIDID)
         {
-            return _context.PlayerIDs.First(f => f.PlayerIDID == playerIDID);
+            return _context.PlayerIDs.Include(p => p.Game).First(f => f.PlayerIDID == playerIDID);
         }
     }
 }

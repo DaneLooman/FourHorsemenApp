@@ -26,7 +26,14 @@ namespace FHM.Controllers
             var user = await _userManager.GetUserAsync(User);
 
             var playerIDs = _context.GetAllPlayerIDsByPlayer(user.Id);
-            return View(playerIDs);
+            if (playerIDs == null)
+            {
+                return RedirectToAction("Create");
+            }
+            else
+            {
+                return View(playerIDs);
+            }
         }
 
         public async Task<IActionResult> Create()
@@ -53,6 +60,33 @@ namespace FHM.Controllers
                 return RedirectToAction("Index");
             }
             return View(playerID);
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            PlayerID playerID = _context.GetPlayerIDByID(id);
+            if (playerID == null)
+            {
+                return NotFound();
+            }
+
+            return View(playerID);
+        }
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.DeletePlayerID(id);
+                return RedirectToAction("Index");
+            }
+            return View(id);
         }
     }
 }
