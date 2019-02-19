@@ -1,0 +1,58 @@
+﻿@model FHM.Models.TournamentViewModels.TournamentViewModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Event</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Tournament.TournamentName" class="control-label"></label>
+                <input asp-for="Tournament.TournamentName" class="form-control" />
+                <span asp-validation-for="TournamentName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tournament.TournamentDescription" class="control-label"></label>
+                <input asp-for="Tournament.TournamentDescription" class="form-control" />
+                <span asp-validation-for="TournamentDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tournament.TournamentFee" class="control-label"></label>
+                <input asp-for="Tournament.TournamentFee" class="form-control" />
+                <span asp-validation-for="TournamentFee" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tournament.TournamentStartTime" class="control-label"></label>
+                <input asp-for="Tournament.TournamentStartTime" class="form-control" />
+                <span asp-validation-for="TournamentStartTime" class="text-danger"></span>
+            </div>
+            <div class="checkbox" style="margin-left:20px;">
+                <input asp-for="Tournament.IsMajorTournament" />
+                <label asp-for="Tournament.IsMajorTournament">
+                </label>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.GameID)
+                @Html.DropDownListFor(m => m.Tournament.GameID, new SelectList(Model.Games, "GameID", "GameName"))
+                @Html.ValidationMessageFor(m => m.GameID)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.FormatID)
+                @Html.DropDownListFor(m => m.Tournament.FormatID, new SelectList(Model.Formats, "FormatID", "FormatName", "Game.GameName", "Game.GameName"))
+                @Html.ValidationMessageFor(m => m.FormatID)
+            </div>
+            <input type="hidden" asp-for="Tournament.TournamentID" />
+            <input type="hidden" asp-for="Tournament.PlayerIDIDs" />
+            <input type="submit" value="Update" class="btn btn-default" /> |
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

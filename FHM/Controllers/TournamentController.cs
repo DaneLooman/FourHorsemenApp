@@ -50,7 +50,7 @@ namespace FHM.Controllers
         public IActionResult Create()
         {
             var games = _context.GetAllGames().ToList();
-            var formats = _formatContext.GetAllFormats().ToList(); ;
+            var formats = _formatContext.GetAllFormats().ToList();
 
             var viewModel = new TournamentViewModel
             {
@@ -88,6 +88,42 @@ namespace FHM.Controllers
 
             return View(thing);
 
+        }
+        public IActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            Tournament tournament = _context.GetTournamentByID(id);
+            if (tournament == null)
+            {
+                return NotFound();
+            }
+            var tournaments = _context.GetAllTournaments();
+            var games = _context.GetAllGames().ToList();
+            var formats = _formatContext.GetAllFormats().ToList();
+            TournamentViewModel viewModel = new TournamentViewModel
+            {
+               Tournament = tournament,
+               Games = games,
+               Formats = formats,
+            };
+
+            return View(viewModel);
+
+        }
+        [HttpPost]
+        public IActionResult Edit(Tournament tournament)
+        {
+            int tournamentID = tournament.TournamentID;
+            if (ModelState.IsValid)
+            {
+                _context.EditTournament(tournament);
+                return RedirectToAction("Details", new { id = tournamentID });
+            }
+            return View(tournament.TournamentID);
         }
     }
 }

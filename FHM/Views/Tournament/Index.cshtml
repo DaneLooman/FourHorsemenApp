@@ -51,6 +51,11 @@
             <td>
                 <a asp-action="Details" asp-route-id="@item.TournamentID">View/Register</a>
             </td>
+            <td>
+                @if (User.Identity.IsAuthenticated)
+                {<a asp-action="Edit" asp-route-id="@item.TournamentID">Edit</a>
+                }
+                </td>
         </tr>
         }
     </tbody>

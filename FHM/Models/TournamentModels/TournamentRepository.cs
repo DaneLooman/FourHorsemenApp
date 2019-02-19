@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using FHM.Data;
 using FHM.Models.GameModel;
 using FHM.Models.PlayerIDModel;
+using FHM.Models.TournamentViewModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace FHM.Models.TournamentModels
@@ -31,6 +32,22 @@ namespace FHM.Models.TournamentModels
             var deletedTournament = _appDbContext.Tournaments.First(d => d.TournamentID == tournamentID);
             _appDbContext.Tournaments.Remove(deletedTournament);
             _appDbContext.SaveChanges();
+        }
+
+        public void EditTournamentViewMOdel(TournamentViewModel viewModel)
+
+        {
+            Tournament tournament = viewModel.Tournament;
+
+            tournament.TournamentName = viewModel.TournamentName;
+            tournament.TournamentDescription = viewModel.TournamentDescription;
+            tournament.TournamentGame = viewModel.TournamentGame;
+            tournament.TournamentFormat = viewModel.TournamentFormat;
+            tournament.TournamentFee = viewModel.TournamentFee;
+            tournament.IsMajorTournament = viewModel.IsMajorTournament;
+            tournament.TournamentStartTime = viewModel.TournamentStartTime;
+
+            EditTournament(tournament);
         }
 
         public void EditTournament(Tournament tournament)
