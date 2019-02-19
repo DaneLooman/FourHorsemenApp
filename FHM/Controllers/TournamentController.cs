@@ -27,12 +27,13 @@ namespace FHM.Controllers
         public async Task<IActionResult> Index()
         {
             var user = await _userManager.GetUserAsync(User);
-
+            var cancelledTournaments =  _context.GetAllCancelledTournaments().ToList();
             var tournamentViewModel = new TournamentViewModel()
             {
                 Title = "Tournaments",
                 Games = _context.GetAllGames().ToList(),
-                Tournaments = _context.GetAllTournaments().ToList()
+                Tournaments = _context.GetAllTournaments().ToList(),
+                CancelledTournaments = cancelledTournaments
             };
 
             if (user is null)

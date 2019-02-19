@@ -46,6 +46,11 @@
                 @Html.DropDownListFor(m => m.Tournament.FormatID, new SelectList(Model.Formats, "FormatID", "FormatName", "Game.GameName", "Game.GameName"))
                 @Html.ValidationMessageFor(m => m.FormatID)
             </div>
+            <div class="checkbox" style="margin-left:20px;">
+                <input asp-for="Tournament.IsCancelled" />
+                <label asp-for="Tournament.IsCancelled">
+                </label>
+            </div>
             <input type="hidden" asp-for="Tournament.TournamentID" />
             <input type="hidden" asp-for="Tournament.PlayerIDIDs" />
             <input type="submit" value="Update" class="btn btn-default" /> |

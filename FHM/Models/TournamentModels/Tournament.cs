@@ -23,6 +23,7 @@ namespace FHM.Models.TournamentModels
         public bool IsMajorTournament { get; set; }
         public decimal TournamentFee { get; set; }
         public DateTime TournamentStartTime { get; set; }
+        public bool IsCancelled { get; set; }
 
         //Foregin Keys
         public int? GameID { get; set; }

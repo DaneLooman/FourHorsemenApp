@@ -32,83 +32,134 @@
     <tbody>
         @foreach (var item in Model.Tournaments)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TournamentGame.GameName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TournamentName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TournamentFormat.FormatName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TournamentStartTime)
-            </td>
-            <td>
-                $@Html.DisplayFor(modelItem => item.TournamentFee)
-            </td>
-            <td>
-                <a asp-action="Details" asp-route-id="@item.TournamentID">View/Register</a>
-            </td>
-            <td>
-                @if (User.Identity.IsAuthenticated)
-                {<a asp-action="Edit" asp-route-id="@item.TournamentID">Edit</a>
-                }
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TournamentGame.GameName)
                 </td>
-        </tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TournamentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TournamentFormat.FormatName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TournamentStartTime)
+                </td>
+                <td>
+                    $@Html.DisplayFor(modelItem => item.TournamentFee)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.TournamentID">View/Register</a>
+                </td>
+                <td>
+                    @if (User.Identity.IsAuthenticated)
+                    {<a asp-action="Edit" asp-route-id="@item.TournamentID">Edit</a>
+                    }
+                </td>
+            </tr>
         }
     </tbody>
 </table>
 <br>
 @if (User.Identity.IsAuthenticated)
 {
-<h2>Your Upcoming Events</h2>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Game
-            </th>
-            <th>
-                Event Name
-            </th>
-            <th>
-                Format
-            </th>
-            <th>
-                Start Time
-            </th>
-            <th>
-                Entry Fee
-            </th>
+    <h2>Your Upcoming Events</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Game
+                </th>
+                <th>
+                    Event Name
+                </th>
+                <th>
+                    Format
+                </th>
+                <th>
+                    Start Time
+                </th>
+                <th>
+                    Entry Fee
+                </th>
 
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.PlayerTournaments)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TournamentGame.GameName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TournamentName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TournamentFormat.FormatName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TournamentStartTime)
-            </td>
-            <td>
-                $@Html.DisplayFor(modelItem => item.TournamentFee)
-            </td>
-            <td>
-                <a asp-action="Details" asp-route-id="@item.TournamentID">View/Register</a>
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
-    }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.PlayerTournaments)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TournamentGame.GameName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TournamentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TournamentFormat.FormatName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TournamentStartTime)
+                </td>
+                <td>
+                    $@Html.DisplayFor(modelItem => item.TournamentFee)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.TournamentID">View/Unregister</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+@if (User.Identity.IsAuthenticated)
+{
+    <h2>Cancelled Events</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Game
+                </th>
+                <th>
+                    Event Name
+                </th>
+                <th>
+                    Format
+                </th>
+                <th>
+                    Start Time
+                </th>
+                <th>
+                    Entry Fee
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.CancelledTournaments)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TournamentGame.GameName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TournamentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TournamentFormat.FormatName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TournamentStartTime)
+                </td>
+                <td>
+                    $@Html.DisplayFor(modelItem => item.TournamentFee)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.TournamentID">Edit</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}

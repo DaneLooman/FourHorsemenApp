@@ -12,9 +12,10 @@ namespace FHM.Models.TournamentModels
         IEnumerable<Tournament> GetAllTournaments();
         Tournament GetTournamentByID(int? tournamentID);
         IEnumerable<Tournament> GetAllTournaments(string id);
+        IEnumerable<Tournament> GetAllCancelledTournaments();
+ 
 
         void AddTournament(Tournament tournament);
-        void DeleteTournament(int tournamentID);
         void EditTournament(Tournament tournament);
 
         IEnumerable<Game> GetAllGames();

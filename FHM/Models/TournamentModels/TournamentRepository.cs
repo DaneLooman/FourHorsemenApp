@@ -27,12 +27,6 @@ namespace FHM.Models.TournamentModels
             _appDbContext.SaveChanges();
         }
 
-        public void DeleteTournament(int tournamentID)
-        {
-            var deletedTournament = _appDbContext.Tournaments.First(d => d.TournamentID == tournamentID);
-            _appDbContext.Tournaments.Remove(deletedTournament);
-            _appDbContext.SaveChanges();
-        }
 
         public void EditTournamentViewMOdel(TournamentViewModel viewModel)
 
@@ -75,7 +69,7 @@ namespace FHM.Models.TournamentModels
            .ThenInclude(PlayerIDIDs => PlayerIDIDs.Player)
            .ThenInclude(Player=> Player.Player)
            .Include(f => f.TournamentGame)
-           .Include(f => f.TournamentFormat).ToList();
+           .Include(f => f.TournamentFormat).ToList().Where(t => t.IsCancelled == false);
         }
 
         public IEnumerable<Tournament> GetAllTournaments(string id)
@@ -87,7 +81,7 @@ namespace FHM.Models.TournamentModels
            .Include(f => f.TournamentGame)
            .Include(f => f.TournamentFormat)
            .ToList()
-           .Where(f => f.PlayerIDIDs.Any(pid => pid.Player.Player.Id == id));
+           .Where(f => f.PlayerIDIDs.Any(pid => pid.Player.Player.Id == id && f.IsCancelled == false));
         }
         public Tournament GetTournamentByID(int? tournamentID)
         {
@@ -98,6 +92,16 @@ namespace FHM.Models.TournamentModels
            .Include(f => f.TournamentGame)
            .Include(f => f.TournamentFormat)
            .FirstOrDefault(f => f.TournamentID == tournamentID);
+        }
+
+        public IEnumerable<Tournament> GetAllCancelledTournaments()
+        {
+            return _appDbContext.Tournaments
+           .Include(f => f.PlayerIDIDs)
+           .ThenInclude(PlayerIDIDs => PlayerIDIDs.Player)
+           .ThenInclude(Player => Player.Player)
+           .Include(f => f.TournamentGame)
+           .Include(f => f.TournamentFormat).ToList().Where(t => t.IsCancelled == true);
         }
     }
 }
