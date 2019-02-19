@@ -11,7 +11,6 @@
         <div class="thumbnail">
             <img src="@item.Game.GameImageThumbnailURL" alt="@item.Game.GameName">
             @Html.DisplayFor(modelItem => item.PlayerGameID)
-            <a asp-action="Edit" asp-route-id="@item.PlayerIDID">Edit</a>
             <a asp-action="Delete" asp-route-id="@item.PlayerIDID">Delete</a>
         </div>
     </div>
