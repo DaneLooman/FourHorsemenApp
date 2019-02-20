@@ -3,11 +3,19 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>
-@Model.Title
-@if (User.Identity.IsAuthenticated)
-{<a asp-area="" asp-controller="Game" asp-action="AddGame">|New Game</a>}
-</h2>
+<section class="container">
+  <div>    
+    <div>
+        <h2>
+            @Model.Title
+            @if (User.Identity.IsAuthenticated)
+            {<a asp-area="" asp-controller="Game" asp-action="AddGame">|New Game</a>}
+        </h2>
+    </div>
+  </div>
+
+
+
 
 @foreach (var game in Model.Games)
 {
@@ -25,3 +33,4 @@
         </div>
     </div>
 }
+</section>

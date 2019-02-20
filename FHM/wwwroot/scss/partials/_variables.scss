@@ -3,6 +3,7 @@
 $primary: #ad201b;
 $secondary: #eaaa00;
 
+
 // PRIMARY
 $wvu-blue: #002855;
 $wvu-gold: #eaaa00;
@@ -30,7 +31,7 @@ $blue-vibrant: #39f;
 $blue-grey: #369;
 $purple-bright: #60c;
 $warm-grey:#968c83;
-
+$dark-grey:#2C2A29;
 $basecolor: #333;
 
 
@@ -40,7 +41,8 @@ $alfa_slab_one: 'Alfa Slab One', cursive;
 // Max Page Widths
 
 $max-page-width-large: 960px;
-$max-page-width-xxxlarge: 960px;
+$max-page-width-xxxlarge: 1440px;
+$backpage-content-container: 960px;
 
 // Double Abstraction
 $linkcolor: $primary;

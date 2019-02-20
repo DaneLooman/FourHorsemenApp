@@ -1,10 +1,41 @@
 body{
 	font-size: 16px;
 	}
+h1{
+	font-family: 'Alfa Slab One', cursive;
+	color:$primary;
+	font-size: 4em;
+	margin-top:40px;
+	float: left;
+	width: 100%;
+	margin-bottom:20px;
+	}
 h2{
 	font-family: 'Alfa Slab One', cursive;
 	color:$primary;
+	font-size: 2.4em;
+	float: left;
+	width: 100%;
+	margin-bottom:20px;
 	}
-p, li{
-	font-family: 'Roboto Slab', serif;
+h3{
+	font-family: 'Rubik', sans-serif;
+	font-weight: 700;
+	font-size: 2em;
+	color:$primary;
+	float: left;
+	width: 100%;
+	margin-bottom:20px;
+	}
+p{
+	font-family: 'Rubik', sans-serif;
+	font-size:1.4em;
+	font-weight: 100;
+	float: left;
+	}
+li{	
+	font-family: 'Rubik', sans-serif;
+	font-size:1em;
+	font-weight: 100;
+	float: left;
 	}

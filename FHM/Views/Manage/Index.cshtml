@@ -4,6 +4,8 @@
     ViewData.AddActivePage(ManageNavPages.Index);
 }
 
+<section class="container">
+
 <h4>@ViewData["Title"]</h4>
 @Html.Partial("_StatusMessage", Model.StatusMessage)
 <div class="row">
@@ -49,6 +51,8 @@
         </form>
     </div>
 </div>
+
+</section>
 
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")

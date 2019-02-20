@@ -3,7 +3,10 @@
     ViewData["Title"] = "GameDetails";
 }
 
-<h2>
+<section>
+  <div class="container">
+    <div>
+        <h2>
     @Model.Game.GameName
     @if (User.Identity.IsAuthenticated)
     {
@@ -12,6 +15,11 @@
 
     }
 </h2>
+    </div>
+  </div>
+</section>
+
+
 
 <div class="col-sm-6 col-lg-6 col-md-6">
     <div class="thumbnail">

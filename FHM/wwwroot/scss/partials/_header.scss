@@ -1,15 +1,52 @@
+.masthead{
+	float:left;
+	width:100%;
+	height:auto;
+	background-color:#eee;
+	padding:20px 0px;
+	}
+.login{
+	float:right;
+	width:40%;
+	list-style: none;
+	margin-bottom:0px;
+	li{
+		width:auto;
+		padding:10px 20px;
+		float:right;
+		a{
+			font-family: 'Rubik', sans-serif;
+			color:$primary;
+			font-weight: 700;
+			font-size:1.2em;
+			}
+		}
+	}
 .header_logo{
 	float:left;
 	height: 50px;
 	width:auto;
 	}
 .navbar{
-	padding:20px 0px;
-	background-color: white;
-	color:$primary;
+	float:left;
+	width:100%;
+	background-color:$dark-grey;
+	color:white;
+	border:none;
+	}
+.navbar li{
+	width:auto;
+	}
+.navbar li:hover{
+		background-color:$warm-grey;
+		}
+.navbar-collapse{
+	padding-left:0px;
 	}
 .navbar-inverse .navbar-nav > li > a{
-	color:$primary;
+	color:white;
 	font-size:1.3em;
 	}
-	
+.nav li:first-child a{
+	padding-left:0px;
+	}

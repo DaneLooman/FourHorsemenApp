@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
         <link rel="stylesheet" href="~/css/styles.css" />
-        <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Roboto+Slab" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Rubik:300,400,700,900" rel="stylesheet">
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -19,51 +19,14 @@
     </environment>
     
 </head>
+
+@await Html.PartialAsync("_HeaderPartial")
+
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index"><img class="header_logo" src="images/4hm-logo-red.svg" alt-text="Four Horsemen Logo"/></a>
-
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                    <li><a asp-area="" asp-controller="Game" asp-action="Index">Games</a></li>
-                    <li><a asp-area="" asp-controller="Tournament" asp-action="Index">Events</a></li>
-                </ul>
-                @if (User.Identity.IsAuthenticated)
-                {
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="PlayerID" asp-action="Index">My IDs</a></li>
-                    <li><a asp-area="" asp-controller="Formats" asp-action="Index">All Formats</a></li>
-                </ul>
-                }
-                @await Html.PartialAsync("_LoginPartial")
-            </div>
-        </div>
-    </nav>
-
+    
     @RenderBody()
 
-    <footer>
-      <div class="container">
-        <p>&copy; 2018 - Four Horsemen Comics and Gaming<br>
-            9201 Mall Rd<br>
-            Morgantown, West Virginia 26501<br>
-        
-        (304) 581-4461</p>
-
-      </div>
-    </footer>
+    @await Html.PartialAsync("_FooterPartial")
 
 
     <environment include="Development">
