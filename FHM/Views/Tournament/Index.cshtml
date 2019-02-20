@@ -84,8 +84,6 @@
                 <th>
                     Entry Fee
                 </th>
-
-<<<<<<< HEAD
             </tr>
         </thead>
         <tbody>
@@ -166,35 +164,4 @@
         </tbody>
     </table>
 }
-=======
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.PlayerTournaments)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TournamentGame.GameName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TournamentName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TournamentFormat.FormatName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TournamentStartTime)
-            </td>
-            <td>
-                $@Html.DisplayFor(modelItem => item.TournamentFee)
-            </td>
-            <td>
-                <a asp-action="Details" asp-route-id="@item.TournamentID">View/Register</a>
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
-    }
 </section>
->>>>>>> 5a43a6d... Dev
