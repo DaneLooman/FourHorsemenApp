@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FHM.Data;
 using FHM.Models.GameModel;
+using FHM.Models.LinkTables;
 using FHM.Models.PlayerIDModel;
 using FHM.Models.TournamentViewModels;
 using Microsoft.EntityFrameworkCore;
@@ -55,53 +56,57 @@ namespace FHM.Models.TournamentModels
             return _appDbContext.Games.ToList();
         }
 
-        public IEnumerable<PlayerID> GetAllPlayerIDs()
-        {
-            return _appDbContext.PlayerIDs
-                .Include(p => p.Player)
-                .ToList();
-        }
-
         public IEnumerable<Tournament> GetAllTournaments()
         {
             return _appDbContext.Tournaments
-           .Include(f => f.PlayerIDIDs)
-           .ThenInclude(PlayerIDIDs => PlayerIDIDs.Player)
-           .ThenInclude(Player=> Player.Player)
+           .Include(f => f.Registartions)
+           .ThenInclude(Registartions => Registartions.Player)
+           .ThenInclude(Player => Player.PlayerIDs)
            .Include(f => f.TournamentGame)
            .Include(f => f.TournamentFormat).ToList().Where(t => t.IsCancelled == false);
+        }
+
+        public Tournament GetTournamentByID(int? tournamentID)
+        {
+            return _appDbContext.Tournaments
+            .Include(f => f.Registartions)
+            .ThenInclude(Registartions => Registartions.Player)
+            .ThenInclude(Player => Player.PlayerIDs)
+            .Include(f => f.TournamentGame)
+            .Include(f => f.TournamentFormat)
+            .FirstOrDefault(f => f.TournamentID == tournamentID);
         }
 
         public IEnumerable<Tournament> GetAllTournaments(string id)
         {
             return _appDbContext.Tournaments
-           .Include(f => f.PlayerIDIDs)
-           .ThenInclude(PlayerIDIDs => PlayerIDIDs.Player)
-           .ThenInclude(Player => Player.Player)
-           .Include(f => f.TournamentGame)
-           .Include(f => f.TournamentFormat)
-           .ToList()
-           .Where(f => f.PlayerIDIDs.Any(pid => pid.Player.Player.Id == id && f.IsCancelled == false));
-        }
-        public Tournament GetTournamentByID(int? tournamentID)
-        {
-           return _appDbContext.Tournaments
-           .Include(f => f.PlayerIDIDs)
-           .ThenInclude(PlayerIDIDs => PlayerIDIDs.Player)
-           .ThenInclude(Player => Player.Player)
-           .Include(f => f.TournamentGame)
-           .Include(f => f.TournamentFormat)
-           .FirstOrDefault(f => f.TournamentID == tournamentID);
+            .Include(f => f.Registartions)
+            .ThenInclude(Registartions => Registartions.Player)
+            .ThenInclude(Player => Player.PlayerIDs)
+            .Include(f => f.TournamentGame)
+            .Include(f => f.TournamentFormat)
+            .ToList()
+            .Where(f => f.Registartions.Any(Reg => Reg.Player.Id == id && f.IsCancelled == false));
         }
 
         public IEnumerable<Tournament> GetAllCancelledTournaments()
         {
-            return _appDbContext.Tournaments
-           .Include(f => f.PlayerIDIDs)
-           .ThenInclude(PlayerIDIDs => PlayerIDIDs.Player)
-           .ThenInclude(Player => Player.Player)
-           .Include(f => f.TournamentGame)
-           .Include(f => f.TournamentFormat).ToList().Where(t => t.IsCancelled == true);
+            {
+                return _appDbContext.Tournaments
+               .Include(f => f.Registartions)
+               .ThenInclude(Registartions => Registartions.Player)
+               .ThenInclude(Player => Player.PlayerIDs)
+               .Include(f => f.TournamentGame)
+               .Include(f => f.TournamentFormat).ToList().Where(t => t.IsCancelled == true);
+            }
+        }
+
+        public IEnumerable<ApplicationUser> GetPlayers()
+        {
+                 return _appDbContext.Players
+                .Include(p => p.PlayerIDs)
+                .ThenInclude(PlayerIDs => PlayerIDs.Game)              
+                .ToList();
         }
     }
 }

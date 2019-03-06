@@ -26,6 +26,7 @@ namespace FHM.Data
         public DbSet<Format> Formats { get; set; }
         public DbSet<PlayerID> PlayerIDs { get; set; }
         public DbSet<Tournament> Tournaments { get; set; }
+        public DbSet<Player_Event> Registrations { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

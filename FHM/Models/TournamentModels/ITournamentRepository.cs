@@ -1,4 +1,5 @@
 ﻿using FHM.Models.GameModel;
+using FHM.Models.LinkTables;
 using FHM.Models.PlayerIDModel;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,6 @@ namespace FHM.Models.TournamentModels
         void EditTournament(Tournament tournament);
 
         IEnumerable<Game> GetAllGames();
-        IEnumerable<PlayerID> GetAllPlayerIDs();
+        IEnumerable<ApplicationUser> GetPlayers();
     }
 }

@@ -4,6 +4,10 @@
     <UserSecretsId>aspnet-FHM-EC50A301-4672-4403-BE37-F8E80F76E3D7</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Migrations\20190306174147_addedPlayerEventTable.cs" />
+    <Compile Remove="Migrations\20190306174147_addedPlayerEventTable.Designer.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="MailKit" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.3" />

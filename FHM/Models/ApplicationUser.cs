@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FHM.Models.LinkTables;
 using FHM.Models.PlayerIDModel;
 using Microsoft.AspNetCore.Identity;
 
@@ -13,5 +14,6 @@ namespace FHM.Models
         public string FirstName { get; set;}
         public string LastName { get; set; }
         public ICollection<PlayerID> PlayerIDs { get; set; }
+        public ICollection<Player_Event> Registrations { get; set; }
     }
 }
