@@ -158,6 +158,12 @@ namespace FHM.Controllers
                 RegTime = DateTime.Now
             };
 
+            if (tournament.Registartions.Where(r => r.Player == user).Count() > 0)
+            {
+                return RedirectToAction("Details","Tournament",new { Id = TournamentID });
+            }
+
+
             if (user != null && tournament != null)
             {
                 _context.RegisterID(reg);
