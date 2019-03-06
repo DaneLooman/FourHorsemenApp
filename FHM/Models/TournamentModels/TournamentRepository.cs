@@ -108,5 +108,11 @@ namespace FHM.Models.TournamentModels
                 .ThenInclude(PlayerIDs => PlayerIDs.Game)              
                 .ToList();
         }
+
+        public void RegisterID(Player_Event reg)
+        {
+            _appDbContext.Registrations.Add(reg);
+            _appDbContext.SaveChanges();
+        }
     }
 }

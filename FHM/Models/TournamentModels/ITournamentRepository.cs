@@ -1,6 +1,7 @@
 ﻿using FHM.Models.GameModel;
 using FHM.Models.LinkTables;
 using FHM.Models.PlayerIDModel;
+using FHM.Models.TournamentViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,7 @@ namespace FHM.Models.TournamentModels
 
         void AddTournament(Tournament tournament);
         void EditTournament(Tournament tournament);
+        void RegisterID(Player_Event registration);
 
         IEnumerable<Game> GetAllGames();
         IEnumerable<ApplicationUser> GetPlayers();

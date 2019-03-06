@@ -9,8 +9,10 @@
 <strong>Format:</strong> @Model.TournamentFormat.FormatName<br />
 <strong>Entry Fee:</strong> $@Model.TournamentFee<br />
 <strong>Start Time:</strong> @Model.TournamentStartTime<br />
-<strong>Registered Players:</strong> @Model.PlayerIDIDs.Count()<br />
+<strong>Registered Players:</strong> @Model.Registartions.Count()<br />
 <strong>Description:</strong> @Model.TournamentDescription<br />
+
+<a asp-action="Register" asp-route-id="@Model.TournamentID" >Register</a>
 
 @if (User.Identity.IsAuthenticated)
 {
@@ -21,37 +23,50 @@
                     First Name
                 </th>
                 <th>
-                   Last Name
+                    Last Name
                 </th>
                 <th>
-                    Game ID
+                    Player ID
                 </th>
                 <th>
-                    Paid
+                    Paid?
+                </th>
+                <th>
+                    Store Credit?
                 </th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.PlayerIDIDs)
+            @foreach (var item in Model.Registartions)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Player.Player.FirstName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Player.Player.LastName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Player.PlayerGameID)
-                    </td>
-                    <td>
-                        <div class="checkbox">@Html.DisplayFor(modelItem => item.Paid)</div>
-                    </td>
-                    <td>
-                        <a asp-action="DropPlayer" asp-route-id="@item.PlayerIDID" asp-route-event="@Model.TournamentID">Delete</a>
-                    </td>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Player.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Player.LastName)
+                </td>
+                <td>
+                    @foreach (var thing in item.Player.PlayerIDs)
+                    {
+                        if (thing.GameId == Model.GameID)
+                        {
+                            @Html.DisplayFor(modelItemthing => thing.PlayerGameID)
+                        }
 
-                </tr>
+                    }
+                </td>
+                <td>
+                    <div class="checkbox">@Html.DisplayFor(modelItem => item.Paid)</div>
+                </td>
+                <td>
+                    <div class="checkbox">@Html.DisplayFor(modelItem => item.StoreCredit)</div>
+                </td>
+                <td>
+                    <a asp-action="DropPlayer" asp-route-id="@item.RegID">Drop</a>
+                </td>
+
+            </tr>
             }
         </tbody>
     </table>

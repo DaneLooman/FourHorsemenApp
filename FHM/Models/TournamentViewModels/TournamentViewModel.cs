@@ -50,6 +50,6 @@ namespace FHM.Models.TournamentViewModels
             FormatID = tournament.FormatID;
         }
 
-
+        public ApplicationUser user { get; set; }
     }
 }

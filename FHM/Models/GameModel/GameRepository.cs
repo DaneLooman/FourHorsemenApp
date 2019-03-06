@@ -56,7 +56,5 @@ namespace FHM.Models.GameModel
             _appDbContext.Games.Update(game);
             _appDbContext.SaveChanges();
         }
-
-
     }
 }

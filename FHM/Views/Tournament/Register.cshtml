@@ -1,0 +1,13 @@
+﻿@model Tournament
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h2>Register</h2>
+
+Register for @Model.TournamentName which starts @Model.TournamentStartTime?
+<br />
+<form asp-action="Register">
+    <input type="hidden" asp-for="TournamentID" />
+    <input type="submit" value="Register" class="btn btn-default" /> 
+</form>

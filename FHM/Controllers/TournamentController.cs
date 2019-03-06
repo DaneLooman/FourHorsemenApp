@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FHM.Models;
 using FHM.Models.FormatModels;
+using FHM.Models.LinkTables;
 using FHM.Models.TournamentModels;
 using FHM.Models.TournamentViewModels;
 using Microsoft.AspNetCore.Identity;
@@ -126,5 +127,51 @@ namespace FHM.Controllers
             }
             return View(tournament.TournamentID);
         }
+
+        public IActionResult Register(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            Tournament tournament = _context.GetTournamentByID(id);
+            ApplicationUser user = _userManager.FindByNameAsync(User.Identity.Name).Result;
+            if (tournament == null)
+            {
+                return NotFound();
+            }
+            
+            return View(tournament);
+
+        }
+        [HttpPost]
+        public IActionResult Register(int TournamentID)
+        {
+            ApplicationUser user = _userManager.FindByNameAsync(User.Identity.Name).Result;
+            Tournament tournament = _context.GetTournamentByID(TournamentID);
+
+            Player_Event reg = new Player_Event
+            {
+                Player = user,
+                Event = tournament,
+                RegTime = DateTime.Now
+            };
+
+            if (user != null && tournament != null)
+            {
+                _context.RegisterID(reg);
+                return RedirectToAction("Index");
+            }
+            return View(TournamentID);
+        }
+
+
+
+
+
+
+
+
     }
 }
