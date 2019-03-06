@@ -1,0 +1,13 @@
+﻿@model Player_Event
+@{
+    ViewData["Title"] = "DropPlayer";
+}
+
+<h2>DropPlayer</h2>
+
+Are you sure you want to drop @Model.Player.FirstName @Model.Player.LastName from the @Model.Event.TournamentName on @Model.RegTime?
+
+<form asp-action="DropPlayer">
+    <input type="hidden" asp-for="RegID" />
+    <input type="submit" value="Drop Player" class="btn btn-default" />
+</form>

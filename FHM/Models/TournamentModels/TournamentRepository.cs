@@ -114,5 +114,21 @@ namespace FHM.Models.TournamentModels
             _appDbContext.Registrations.Add(reg);
             _appDbContext.SaveChanges();
         }
+
+        public Player_Event GetRegistration(int? regId)
+        {
+            return _appDbContext.Registrations
+                .Include(e => e.Event)
+                .Include(p => p.Player)
+                .Where(e => e.RegID == regId)
+                .FirstOrDefault();
+        }
+        public void DropPlayer(Player_Event reg)
+        {
+
+            _appDbContext.Registrations.Remove(reg);
+            _appDbContext.SaveChanges();
+        }
+
     }
 }

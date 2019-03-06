@@ -20,8 +20,10 @@ namespace FHM.Models.TournamentModels
         void AddTournament(Tournament tournament);
         void EditTournament(Tournament tournament);
         void RegisterID(Player_Event registration);
+        void DropPlayer(Player_Event registration);
 
         IEnumerable<Game> GetAllGames();
         IEnumerable<ApplicationUser> GetPlayers();
+        Player_Event GetRegistration(int? regId);
     }
 }

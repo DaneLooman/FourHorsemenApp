@@ -165,7 +165,31 @@ namespace FHM.Controllers
             }
             return View(TournamentID);
         }
+        public IActionResult DropPlayer(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            Player_Event reg = _context.GetRegistration(id);
+
+            return View(reg);
+
+        }
+        [HttpPost]
+        public IActionResult DropPlayer(int regID)
+        {
+
+            Player_Event reg = _context.GetRegistration(regID);
+
+            if (reg != null)
+            {
+                _context.DropPlayer(reg);
+                return RedirectToAction("Index");
+            }
+            return View(regID);
+        }
 
 
 
