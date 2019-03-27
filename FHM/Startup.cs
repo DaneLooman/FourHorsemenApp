@@ -16,6 +16,7 @@ using FHM.Models.FormatViewModels;
 using FHM.Models.FormatModels;
 using FHM.Models.PlayerIDModel;
 using FHM.Models.TournamentModels;
+using FHM.Models.ApplicationUserViewModels;
 
 namespace FHM
 {
@@ -50,6 +51,7 @@ namespace FHM
             services.AddTransient<IPlayerIDRepository, PlayerIDRepository>();
             services.AddTransient<ITournamentRepository, TournamentRepository>();
             services.AddTransient<IPlayerRepository, PlayerRepository>();
+            services.AddTransient<IApplicationUserViewRepo, ApplicationUserViewRepo>();
             services.AddMvc();
         }
 
