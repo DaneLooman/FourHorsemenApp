@@ -13,6 +13,13 @@ namespace FHM.Models
     {
         public string FirstName { get; set;}
         public string LastName { get; set; }
+        public string FullName
+        {
+            get
+            {
+                return FirstName + " " + LastName;
+            }
+        }
         public ICollection<PlayerID> PlayerIDs { get; set; }
         public ICollection<Player_Event> Registrations { get; set; }
     }

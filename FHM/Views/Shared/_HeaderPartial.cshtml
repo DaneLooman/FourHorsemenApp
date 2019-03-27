@@ -24,11 +24,12 @@
                     <!-- <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li> -->
                     <li><a asp-area="" asp-controller="Game" asp-action="Index">Games</a></li>
                     <li><a asp-area="" asp-controller="Tournament" asp-action="Index">Events</a></li>
-                @if (User.Identity.IsAuthenticated)
-                {
-                    <li><a asp-area="" asp-controller="PlayerID" asp-action="Index">My IDs</a></li>
-                    <li><a asp-area="" asp-controller="Formats" asp-action="Index">All Formats</a></li>
-                }
+                    <li><a asp-area="" asp-controller="ApplicationUserView" asp-action="Index">Roles</a></li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li><a asp-area="" asp-controller="PlayerID" asp-action="Index">My IDs</a></li>
+                        <li><a asp-area="" asp-controller="Formats" asp-action="Index">All Formats</a></li>
+                    }
                 </ul>
             </div>
         </div>

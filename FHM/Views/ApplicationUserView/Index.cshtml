@@ -4,18 +4,19 @@
 }
 
 <h2>Role Managment</h2>
-All Admins
-<table class="table" style="width:33%">
+<br />
+<table class="table" style="width:75%">
+    <caption>Admins</caption>
     <thead>
         <tr>
             <th>
-                First Name
-            </th>
-            <th>
-                Last Name
+                Name
             </th>
             <th>
                 Email
+            </th>
+            <th>
+                Remove
             </th>
         </tr>
     </thead>
@@ -24,10 +25,7 @@ All Admins
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.FirstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastName)
+                    @Html.DisplayFor(modelItem => item.FullName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.NormalizedEmail)
@@ -39,19 +37,18 @@ All Admins
         }
     </tbody>
 </table>
-<br />
-All Employees
-<table class="table" style="width:33%">
+<table class="table" style="width:75%">
+    <caption>Employees</caption>
     <thead>
         <tr>
             <th>
-                First Name
-            </th>
-            <th>
-                Last Name
+                Name
             </th>
             <th>
                 Email
+            </th>
+            <th>
+                Remove
             </th>
         </tr>
     </thead>
@@ -60,10 +57,7 @@ All Employees
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.FirstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastName)
+                    @Html.DisplayFor(modelItem => item.FullName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.NormalizedEmail)
@@ -75,19 +69,20 @@ All Employees
         }
     </tbody>
 </table>
-<br />
-All Organizers
-<table class="table" style="width:33%">
+
+<table class="table" style="width:75%">
+    <caption>Organizers</caption>
     <thead>
         <tr>
             <th>
-                First Name
+                Name
             </th>
-            <th>
-                Last Name
-            </th>
+
             <th>
                 Email
+            </th>
+            <th>
+                Remove
             </th>
         </tr>
     </thead>
@@ -96,10 +91,7 @@ All Organizers
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.FirstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastName)
+                    @Html.DisplayFor(modelItem => item.FullName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.NormalizedEmail)
@@ -112,18 +104,19 @@ All Organizers
     </tbody>
 </table>
 <br />
-All Customers
-<table class="table" style="width:33%">
+<table class="table" style="width:75%">
+    <caption>Customers</caption>
     <thead>
         <tr>
             <th>
-                First Name
+                Name
             </th>
-            <th>
-                Last Name
-            </th>
+
             <th>
                 Email
+            </th>
+            <th>
+                Add Role
             </th>
         </tr>
     </thead>
@@ -132,16 +125,13 @@ All Customers
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.FirstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastName)
+                    @Html.DisplayFor(modelItem => item.FullName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.NormalizedEmail)
                 </td>
                 <td>
-                    <a asp-action="Delete" asp-route-id="@item.Id">Remove</a>
+                    <a asp-action="Add" asp-route-id="@item.Id">Add Role</a>
                 </td>
             </tr>
         }
@@ -149,17 +139,17 @@ All Customers
 </table>
 <br />
 Users With No Role
-<table class="table" style="width:33%">
+<table class="table" style="width:75%">
     <thead>
         <tr>
             <th>
-                First Name
-            </th>
-            <th>
-                Last Name
+                Name
             </th>
             <th>
                 Email
+            </th>
+            <th>
+                Add Role
             </th>
         </tr>
     </thead>
@@ -168,16 +158,13 @@ Users With No Role
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.FirstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastName)
+                    @Html.DisplayFor(modelItem => item.FullName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.NormalizedEmail)
                 </td>
                 <td>
-                    <a asp-action="Delete" asp-route-id="@item.Id">Remove</a>
+                    <a asp-action="Add" asp-route-id="@item.Id">Add Role</a>
                 </td>
             </tr>
         }
