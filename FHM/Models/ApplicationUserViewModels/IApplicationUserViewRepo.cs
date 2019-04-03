@@ -13,8 +13,9 @@ namespace FHM.Models.ApplicationUserViewModels
         IEnumerable<ApplicationUser> GetAllOrganizers();
         IEnumerable<ApplicationUser> GetAllEmployees();
         IEnumerable<ApplicationUser> GetAllAdmins();
+        ApplicationUser findUser(string id);
 
-        void DropRole(ApplicationUser user, AppRole role);
-        void AddRole(ApplicationUser user, AppRole role);
+        Task DropRole(string userId, string roleId);
+        Task AddRole(string userId, string roleId);
     }
 }

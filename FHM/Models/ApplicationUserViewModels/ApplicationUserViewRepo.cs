@@ -20,14 +20,21 @@ namespace FHM.Models.ApplicationUserViewModels
             _userManager = userManager;
 
         }
-        public void AddRole(ApplicationUser user, AppRole role)
+        public ApplicationUser findUser(string id)
         {
-            _userManager.AddToRoleAsync(user, role.Id);            
+            ApplicationUser user = _appDbContext.Users.Where(a => a.Id == id).FirstOrDefault();
+            return user;
+        }
+        public async Task AddRole(string userId, string roleId)
+        {
+            ApplicationUser user = _appDbContext.Users.Where(a => a.Id == userId).FirstOrDefault();
+            await _userManager.AddToRoleAsync(user, roleId);            
         }
 
-        public void DropRole(ApplicationUser user, AppRole role)
+        public async Task DropRole(string userId, string roleId)
         {
-            _userManager.RemoveFromRoleAsync(user, role.Id);
+            ApplicationUser user = _appDbContext.Users.Where(a => a.Id == userId).FirstOrDefault();
+            await _userManager.RemoveFromRoleAsync(user, roleId);
         }
 
         public IEnumerable<ApplicationUser> GetAllAdmins()

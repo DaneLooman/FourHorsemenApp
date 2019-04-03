@@ -42,5 +42,72 @@ namespace FHM.Controllers
             return View(applicationUserView);
 
         }
+        public IActionResult Delete(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            ApplicationUser user = _context.findUser(id);
+            var roleIds = _userManager.GetRolesAsync(user).Result;
+            List<AppRole> roles = new List<AppRole>();
+
+            //Add ForEach for Roles of a user or add string for Role ID
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var appUserAndRoleView = new ApplicationUserView()
+            {
+                Roles = roles,
+                User = user
+            };
+
+            return View(appUserAndRoleView);
+        }
+        [HttpPost]
+        public IActionResult Delete(string userID, string roleID)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.DropRole(userID, roleID);
+                return RedirectToAction("Index");
+            }
+            return View(userID);
+        }
+        public IActionResult Add(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            ApplicationUser user = _context.findUser(id);
+            IEnumerable<AppRole> roles = _context.GetAllRoles();
+            if (user == null)
+            {
+                return NotFound();
+            }
+            var appUserAndRoleView = new ApplicationUserView()
+            {
+                Roles = roles,
+                User = user
+            };
+
+            return View(appUserAndRoleView);
+        }
+        [HttpPost]
+        public IActionResult Add(string userID, string roleID)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.AddRole(userID, roleID);
+                return RedirectToAction("Index");
+            }
+            return View(userID);
+        }
     }
 }

@@ -22,5 +22,6 @@ namespace FHM.Models
         }
         public ICollection<PlayerID> PlayerIDs { get; set; }
         public ICollection<Player_Event> Registrations { get; set; }
+        public List<AppRole> Roles { get; set; }
     }
 }

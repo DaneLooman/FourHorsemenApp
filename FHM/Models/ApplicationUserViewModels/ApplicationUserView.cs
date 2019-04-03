@@ -26,6 +26,7 @@ namespace FHM.Models.ApplicationUserViewModels
         [Display(Name = "User")]
         [Required]
         public string UserID { get; set; }
+        public ApplicationUser User { get; set; }
 
         public ApplicationUserView(ApplicationUser user, AppRole role)
         {
