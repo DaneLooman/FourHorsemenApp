@@ -1,13 +1,13 @@
 ﻿@model ApplicationUserView
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Add";
 }
 
-<h2>Delete</h2>
+<h2>Add</h2>
 
-Select which Role to Delete from User: @Model.User.FullName
+Select which Role to Add to User: @Model.User.FullName
 
-<form asp-action="Delete">
+<form asp-action="Add">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="form-group">
         @Html.LabelFor(m => m.Roles)
@@ -16,8 +16,7 @@ Select which Role to Delete from User: @Model.User.FullName
     </div>
 
     <div class="form-group">
-        <input type="hidden" asp-for="UserID" value="@Model.User.Id" />
-        <input type="submit" value="Remove" class="btn btn-default" />
+        <input type="hidden" asp-for="UserID" value="@Model.User.Id"/>
+        <input type="submit" value="Add" class="btn btn-default" />
     </div>
 </form>
-

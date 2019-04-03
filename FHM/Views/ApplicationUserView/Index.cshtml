@@ -23,17 +23,20 @@
     <tbody>
         @foreach (var item in Model.Admins)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FullName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NormalizedEmail)
-                </td>
-                <td>
-                    <a asp-action="Delete" asp-route-id="@item.Id">Remove</a>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NormalizedEmail)
+            </td>
+            <td>
+                <a asp-action="Delete" asp-route-id="@item.Id">Remove</a>
+            </td>
+            <td>
+                <a asp-action="Add" asp-route-id="@item.Id">Add</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>
@@ -55,17 +58,20 @@
     <tbody>
         @foreach (var item in Model.Employees)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FullName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NormalizedEmail)
-                </td>
-                <td>
-                    <a asp-action="Delete" asp-route-id="@item.Id">Remove</a>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NormalizedEmail)
+            </td>
+            <td>
+                <a asp-action="Delete" asp-route-id="@item.Id">Remove</a>
+            </td>
+            <td>
+                <a asp-action="Add" asp-route-id="@item.Id">Add</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>
@@ -89,17 +95,20 @@
     <tbody>
         @foreach (var item in Model.Organizers)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FullName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NormalizedEmail)
-                </td>
-                <td>
-                    <a asp-action="Delete" asp-route-id="@item.Id">Remove</a>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NormalizedEmail)
+            </td>
+            <td>
+                <a asp-action="Delete" asp-route-id="@item.Id">Remove</a>
+            </td>
+            <td>
+                <a asp-action="Add" asp-route-id="@item.Id">Add</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>
@@ -123,23 +132,24 @@
     <tbody>
         @foreach (var item in Model.Customers)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FullName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NormalizedEmail)
-                </td>
-                <td>
-                    <a asp-action="Add" asp-route-id="@item.Id">Add Role</a>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NormalizedEmail)
+            </td>
+            <td>
+                <a asp-action="Add" asp-route-id="@item.Id">Add Role</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>
 <br />
 Users With No Role
 <table class="table" style="width:75%">
+    <caption>Users With No Role</caption>
     <thead>
         <tr>
             <th>

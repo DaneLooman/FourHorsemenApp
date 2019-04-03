@@ -53,9 +53,17 @@ namespace FHM.Controllers
             var roleIds = _userManager.GetRolesAsync(user).Result;
             List<AppRole> roles = new List<AppRole>();
 
-            //Add ForEach for Roles of a user or add string for Role ID
+            foreach (string element in roleIds)
+            {
+                var role = _context.findRole(element);
+                roles.Add(role);
+            }
 
             if (user == null)
+            {
+                return NotFound();
+            }
+            if (roles == null)
             {
                 return NotFound();
             }
@@ -69,11 +77,11 @@ namespace FHM.Controllers
             return View(appUserAndRoleView);
         }
         [HttpPost]
-        public IActionResult Delete(string userID, string roleID)
+        public IActionResult Delete(string userID, string AppRoleID)
         {
             if (ModelState.IsValid)
             {
-                _context.DropRole(userID, roleID);
+                _context.DropRole(userID, AppRoleID);
                 return RedirectToAction("Index");
             }
             return View(userID);
@@ -100,11 +108,11 @@ namespace FHM.Controllers
             return View(appUserAndRoleView);
         }
         [HttpPost]
-        public IActionResult Add(string userID, string roleID)
+        public IActionResult Add(string userID, string AppRoleID)
         {
             if (ModelState.IsValid)
             {
-                _context.AddRole(userID, roleID);
+                _context.AddRole(userID, AppRoleID);
                 return RedirectToAction("Index");
             }
             return View(userID);
